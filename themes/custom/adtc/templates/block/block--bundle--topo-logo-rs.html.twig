@@ -17,27 +17,29 @@
         {% set informacoes = content.field_informacoes %}
         <div class="row">
           {% if informacoes is not empty %}
-          {% for item in informacoes %}
-            {% set paragraph_item = item['#paragraph'] %}
-
-            {% if paragraph_item is not empty %}
-              {% set titulo = paragraph_item.field_titulo_topo_icone is defined ? paragraph_item.field_titulo_topo_icone.value : '' %}
-              {% set imagem = paragraph_item.field_icone_logo is defined ? paragraph_item.field_icone_logo.entity.fileuri : null %}
-              {% set imagemUrl = imagem ? file_url(imagem) : null %}
-              {% set conteudo = paragraph_item.field_conteudo_topo is defined ? paragraph_item.field_conteudo_topo.value : '' %}
-              <div class="col-md-3">
-                {% if imagemUrl %}
-                  <img class="img-icone-topo float-left mr-3" src="{{ imagemUrl }}" style="width: 32px; height: 34px;">
-                {% endif %}
-              {{ titulo }}</br>
-              {{ conteudo|raw }}
-
-              </div>
-            {% else %}
-
-            {% endif %}
-          {% endfor %}
-        {% endif %}
+            {% for item in informacoes %}
+              {% set paragraph_item = item['#paragraph'] %}
+              {% if paragraph_item is not empty %}
+                {% set titulo = paragraph_item.field_titulo_topo_icone is defined ? paragraph_item.field_titulo_topo_icone.value : '' %}
+                {% set imagem = paragraph_item.field_icone_logo is defined ? paragraph_item.field_icone_logo.entity.fileuri : null %}
+                {% set imagemUrl = imagem ? file_url(imagem) : null %}
+                {% set conteudo = paragraph_item.field_conteudo_topo is defined ? paragraph_item.field_conteudo_topo.value : '' %}
+                <div class="col-md-3 d-flex align-items-start col-items-topo">
+                  {% if imagemUrl %}
+                    <img  class="img-icone-topo mr-3" src="{{ imagemUrl }}" style="width: 32px; height: 34px;">
+                  {% endif %}
+                  <div>
+                    <div class="titulo-icone-topo">
+                      {{ titulo }}
+                    </div>
+                    <div class="conteudo-icones">
+                      <strong>{{ conteudo|raw }}</strong>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
     </div>

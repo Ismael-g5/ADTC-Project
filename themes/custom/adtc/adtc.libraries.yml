@@ -1,10 +1,10 @@
 global-styling:
   version: VERSION
   js:
-    js/global.js: {}
+    /assets/js/global.js: {}
   css:
     component:
-     assets/css/style.css: {}
+     /assets/css/style.css: {}
 bootstrap:
   js:
     /libraries/popper/popper.min.js: {}
