@@ -7,6 +7,9 @@ base theme: bootstrap_barrio
 
 libraries:
   - adtc/bootstrap
+  - adtc/slick
+  - adtc/parallax
+  - adtc/masks
   - adtc/global-styling
 
 regions:

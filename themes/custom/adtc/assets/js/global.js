@@ -3,11 +3,11 @@
  * Global utilities.
  *
  */
-(function (Drupal) {
+(function ($, Drupal) {
 
   'use strict';
 
-  Drupal.behaviors.bootstrap_barrio_subtheme = {
+  Drupal.behaviors.default = {
     attach: function (context, settings) {
 
       $('.slick-carousel').slick({
