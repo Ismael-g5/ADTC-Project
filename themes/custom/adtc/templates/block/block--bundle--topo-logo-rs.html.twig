@@ -15,7 +15,16 @@
     <div{{ content_attributes.addClass('content') }}>
       <div>
         {% set informacoes = content.field_informacoes %}
+        {% set imgLogo = content.field_imagem_logo['#items'].entity.fileuri %}
+
+
         <div class="row">
+      <div class="col-md-3 imagem-logo">
+
+        <img style="width: 100px; height: 100px;"src="{{file_url(imgLogo)}}">
+
+
+      </div>
           {% if informacoes is not empty %}
             {% for item in informacoes %}
               {% set paragraph_item = item['#paragraph'] %}
@@ -24,6 +33,7 @@
                 {% set imagem = paragraph_item.field_icone_logo is defined ? paragraph_item.field_icone_logo.entity.fileuri : null %}
                 {% set imagemUrl = imagem ? file_url(imagem) : null %}
                 {% set conteudo = paragraph_item.field_conteudo_topo is defined ? paragraph_item.field_conteudo_topo.value : '' %}
+
                 <div class="col-md-3 d-flex align-items-start col-items-topo">
                   {% if imagemUrl %}
                     <img  class="img-icone-topo mr-3" src="{{ imagemUrl }}" style="width: 32px; height: 34px;">

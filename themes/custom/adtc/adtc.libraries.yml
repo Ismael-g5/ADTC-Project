@@ -12,3 +12,20 @@ bootstrap:
   css:
     component:
       /libraries/bootstrap/css/bootstrap.min.css: {}
+parallax:
+  js:
+    /libraries/parallax/parallax.min.js: {}
+  dependencies:
+    - core/jquery
+masks:
+  js:
+    /libraries/jquery-mask/jquery.mask.min.js: {}
+    assets/js/masks.js: {}
+slick:
+  css:
+    component:
+      /libraries/slick/slick/slick.css: {}
+      /libraries/slick/slick/slick-theme.css: {}
+  js:
+    /libraries/slick/slick/slick.min.js: {}
+

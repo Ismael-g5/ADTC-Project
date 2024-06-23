@@ -1,0 +1,15 @@
+{{ attach_library('adtc/slick') }}
+
+<div class="slick-carousel" style="overflow:hidden;">
+  {% for banner_entity in row._entity.field_banner %}
+    {% set estilo_banner = banner_entity.entity.uri.value|image_style('banner_home') %}
+    {% set file_path = file_url(estilo_banner) %}
+
+    <div class="banner-item">
+      <img class="img-fluid banner-home" src="{{ file_path }}" alt="Banner">
+    </div>
+  {% endfor %}
+</div>
+
+<button class="slick-prev" aria-label="Previous" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">Previous</button>
+<button class="slick-next" aria-label="Next" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">Next</button>
