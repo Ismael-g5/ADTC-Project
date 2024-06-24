@@ -1,5 +1,134 @@
 {{ attach_library('adtc/slick') }}
+{% set videoFile = row._entity.field_video_banner.entity.fileuri %}
+{% set video = file_url(videoFile) %}
 
+{% if videoFile is not null %}
+
+<style>
+  .video-background {
+    position: relative;
+    width: 100%;
+    height: 720px;
+    overflow: hidden;
+    margin-top: -40px;
+  }
+
+  .video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .menu-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo img {
+    height: 100px; /* Adjust the height as needed */
+  }
+
+  .menu-items {
+    flex-grow: 1; /* Allow menu items to grow */
+    display: flex;
+    justify-content: center; /* Center menu items horizontally */
+  }
+
+  .menu-items ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-items li {
+    margin: 0 10px;
+  }
+
+  .menu-items a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: 500;
+    font-family: sans-serif;
+    letter-spacing: 0.10em;
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+  }
+
+  .icons i {
+    margin-left: 15px;
+    font-size: 24px; /* Adjust the size of the icons as needed */
+  }
+
+  .slick-carousel {
+    position: relative;
+    width: 100%;
+    height: 720px;
+  }
+
+  .slick-prev, .slick-next {
+    z-index: 3;
+  }
+</style>
+{# main -> Itens do menu #}
+{% set menu_main = 'main' %}
+{% set menu_tree_main = drupal_menu(menu_main) %}
+{% set menu_items = menu_tree_main['#items'] %}
+
+<!-- Video Background Section -->
+<div class="video-background mb-5">
+  <div class="menu-overlay">
+    <div class="logo">
+      <a href="{{ path('<front>') }}" title="Início">
+        <img src="{{ path('<front>') }}{{directory}}/assets/images/logo_adtc.png" class="img-responsive" draggable="false" />
+      </a>
+    </div>
+    <div class="menu-items">
+      <ul class="institucional-menu">
+        {% for item in menu_items %}
+          <li class="item list-unstyled">
+            <a href="{{ item.url }}" class="link-menu menu-title" target="_blank">{{ item.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="icons">
+      <!-- Add your icons here -->
+      <i class="fa fa-search"></i>
+      <i class="fa fa-user"></i>
+      <!-- Add more icons as needed -->
+    </div>
+  </div>
+  <video autoplay muted loop width="100%" height="auto">
+    <source src="{{ video }}" type="video/mp4">
+  </video>
+</div>
+
+{% else %}
+<!-- Slick Carousel Section -->
 <div class="slick-carousel" style="overflow:hidden;">
   {% for banner_entity in row._entity.field_banner %}
     {% set estilo_banner = banner_entity.entity.uri.value|image_style('banner_home') %}
@@ -13,3 +142,4 @@
 
 <button class="slick-prev" aria-label="Previous" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">Previous</button>
 <button class="slick-next" aria-label="Next" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">Next</button>
+{% endif %}
