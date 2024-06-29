@@ -220,7 +220,7 @@
     </div>
   </div>
   {% else %}
-  <!-- Slick Carousel Section -->
+
   <div class="slick-carousel" style="overflow-x:hidden; position: relative;">
     {% for banner_entity in row._entity.field_banner %}
       {% set estilo_banner = banner_entity.entity.uri.value|image_style('banner_home') %}
@@ -232,22 +232,11 @@
       </div>
     {% endfor %}
 
-    {% if loop.index == 1 %}
+    {% if loop.index > 1 %}
     <button class="slick-prev" aria-label="Previous" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">Previous</button>
     <button class="slick-next" aria-label="Next" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">Next</button>
     {% endif %}
   </div>
   {% endif %}
 </div>
-<script>
-  // Script para controlar a opacidade do gradiente conforme necessário
-  window.addEventListener('scroll', function() {
-    var fadeBackground = document.querySelector('.fade-background');
-    var scrollPosition = window.scrollY;
 
-    // Ajuste o valor de opacidade conforme o scroll
-    var opacity = 1 - (scrollPosition / 500); // Ajuste o divisor conforme necessário
-
-    fadeBackground.style.opacity = opacity.toFixed(2); // Limita a opacidade a dois decimais
-  });
-</script>
