@@ -15,7 +15,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); /* Ajuste as opacidades conforme necessário */
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     z-index: 1;
   }
 
@@ -23,10 +23,10 @@
   .slick-carousel {
     position: relative;
     width: 100%;
-    height: 720px; /* Ajuste a altura conforme necessário */
+    height: 720px;
     overflow: hidden;
     margin-top: -40px;
-    z-index: 0; /* Ajustado para garantir que fique atrás do gradiente */
+    z-index: 0;
   }
   .video-background {
     position: relative;
@@ -60,7 +60,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100px; /* Ajuste a altura conforme necessário */
+    height: 100px;
     z-index: 2;
     color: white;
     display: flex;
@@ -76,13 +76,13 @@
   }
 
   .logo img {
-    height: 100px; /* Ajuste a altura conforme necessário */
+    height: 100px;
   }
 
   .menu-items {
-    flex-grow: 1; /* Permitir que os itens do menu cresçam */
+    flex-grow: 1;
     display: flex;
-    justify-content: center; /* Centralizar os itens do menu horizontalmente */
+    justify-content: center;
   }
 
   .menu-items ul {
@@ -139,18 +139,19 @@
 
   .banner-item {
     position: relative;
-    z-index: 2; /* Garante que o banner esteja acima do overlay */
+    z-index: 2;
   }
+
 
   .banner-content {
-    position: absolute;
-    bottom: 20px; /* Ajuste conforme necessário */
-    left: 20px; /* Ajuste conforme necessário */
-    color: #fff;
-    z-index: 5; /* Cor do texto */
-  }
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  z-index: 3;
+  color: #fff;
+  padding: 20px;
+}
 </style>
-
 
 {# main -> Itens do menu #}
 {% set menu_main = 'main' %}
@@ -159,29 +160,31 @@
 
 <div class="menu-overlay-container">
   <div class="menu-overlay">
-    <div class="logo">
+    <div class="logo mt-3">
       <a href="{{ path('<front>') }}" title="Início">
-        <img src="{{ path('<front>') }}{{directory}}/assets/images/logo_adtc.png" class="img-responsive" draggable="false" />
+        <img src="{{ path('<front>') }}{{ directory }}/assets/images/logo_adtc.png" class="img-responsive" draggable="false" />
       </a>
     </div>
     <div class="menu-items">
       <ul class="institucional-menu">
         {% for item in menu_items %}
           <li class="item list-unstyled">
-            <a href="{{ item.url }}" class="link-menu menu-title" target="_blank">{{ item.title }}</a>
+            <a href="{{ item.url }}" class="link-menu menu-title" target="_blank">
+              {{ item.title }}
+            </a>
           </li>
         {% endfor %}
       </ul>
     </div>
     <div class="icons">
-      <a href="#" class="whatsapp-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
-          <path d="M10.62 7.29c-.14-.02-.78-.04-1.12.14-.34.18-.61.48-.82.8-.23.35-.38.77-.4 1.19-.02.42-.02.85-.02 1.27 0 .42.01.85.03 1.27.02.42.17.84.4 1.19.21.32.48.62.82.8.34.18.98.12 1.12.11.15-.01.46-.07.57-.17.12-.1.19-.22.21-.36.02-.14.03-.39.03-.77 0-.36-.01-.64-.03-.77-.02-.13-.09-.26-.2-.37-.12-.11-.42-.26-.59-.31-.17-.05-.81-.29-1.22-.42-.38-.13-.76-.13-1.15-.01-.38.12-.88.42-1.13.75-.24.34-.37.77-.4 1.19-.03.41-.04.85-.04 1.28 0 .43.01.87.04 1.28.03.42.16.85.4 1.19.25.36.77.67 1.12.8.34.14.99.17 1.12.14.13-.03.67-.27.88-.6.21-.33.24-.67.27-.87.03-.2.05-.78.05-.97 0-.19.01-1.01-.3-1.54-.3-.53-.78-.95-1.31-1.15zm-1.3-4.06c1.76 0 3.38.72 4.56 1.92s1.92 2.8 1.92 4.56c0 1.76-.72 3.38-1.92 4.56s-2.8 1.92-4.56 1.92c-1.76 0-3.38-.72-4.56-1.92s-1.92-2.8-1.92-4.56c0-1.76.72-3.38 1.92-4.56s2.8-1.92 4.56-1.92zM8 1.66c-1.1 0-2.14.28-3.05.76L3.7 1.1 2.82 2l.76 1.26C3.3 4.18 3 5.57 3 7.04c0 3.82 3.11 6.93 6.93 6.93 1.68 0 3.23-.6 4.43-1.6l1.26.76.9-.9-.76-1.26c.36-.83.57-1.76.57-2.73 0-3.82-3.1-6.93-6.93-6.93z"/>
+      <a href="" class="">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24">
+          <path d="M19.077,4.928C17.191,3.041,14.683,2.001,12.011,2c-5.506,0-9.987,4.479-9.989,9.985 c-0.001,1.76,0.459,3.478,1.333,4.992L2,22l5.233-1.237c1.459,0.796,3.101,1.215,4.773,1.216h0.004 c5.505,0,9.986-4.48,9.989-9.985C22.001,9.325,20.963,6.816,19.077,4.928z M16.898,15.554c-0.208,0.583-1.227,1.145-1.685,1.186 c-0.458,0.042-0.887,0.207-2.995-0.624c-2.537-1-4.139-3.601-4.263-3.767c-0.125-0.167-1.019-1.353-1.019-2.581 S7.581,7.936,7.81,7.687c0.229-0.25,0.499-0.312,0.666-0.312c0.166,0,0.333,0,0.478,0.006c0.178,0.007,0.375,0.016,0.562,0.431 c0.222,0.494,0.707,1.728,0.769,1.853s0.104,0.271,0.021,0.437s-0.125,0.27-0.249,0.416c-0.125,0.146-0.262,0.325-0.374,0.437 c-0.125,0.124-0.255,0.26-0.11,0.509c0.146,0.25,0.646,1.067,1.388,1.728c0.954,0.85,1.757,1.113,2.007,1.239 c0.25,0.125,0.395,0.104,0.541-0.063c0.146-0.166,0.624-0.728,0.79-0.978s0.333-0.208,0.562-0.125s1.456,0.687,1.705,0.812 c0.25,0.125,0.416,0.187,0.478,0.291C17.106,14.471,17.106,14.971,16.898,15.554z"></path>
         </svg>
       </a>
       <a href="#" class="instagram-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-          <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.444-.048-3.298c-.04-.851-.175-1.434-.372-1.943a3.9 3.9 0 0 0-.923-1.416A3.9 3.9 0 0 0 13.24.42C12.732.222 12.15.087 11.298.048 10.445.01 10.173 0 7.999 0H8zm0 1.46c2.136 0 2.387.008 3.23.046.78.035 1.204.166 1.486.276.374.145.641.318.922.6.281.28.455.547.6.922.11.282.24.707.275 1.485.039.844.047 1.095.047 3.23s-.008 2.387-.046 3.23c-.036.779-.167 1.204-.276 1.485-.145.375-.318.642-.6.922a2.44 2.44 0 0 1-.922.6c-.282.11-.707.24-1.485.275-.844.039-1.095.047-3.23.047s-2.387-.008-3.23-.046c-.779-.036-1.204-.167-1.486-.276a2.44 2.44 0 0 1-.922-.6 2.44 2.44 0 0 1-.6-.922c-.11-.282-.24-.707-.275-1.485-.039-.844-.047-1.095-.047-3.23s.008-2.387.046-3.23c.036-.779.167-1.204.276-1.486.145-.374.318-.641.6-.922.28-.281.547-.455.922-.6.282-.11.707-.24 1.485-.275.844-.039 1.095-.047 3.23-.047zM8 3.89a4.11 4.11 0 1 0 0 8.22 4.11 4.11 0 0 0 0-8.22zm0 1.46a2.65 2.65 0 1 1 0 5.3 2.65 2.65 0 0 1 0-5.3zm5.2-.23a.96.96 0 1 1-1.92 0 .96.96 0 0 1 1.92 0z"/>
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48">
+          <path d="M 16.5 5 C 10.159 5 5 10.159 5 16.5 L 5 31.5 C 5 37.841 10.159 43 16.5 43 L 31.5 43 C 37.841 43 43 37.841 43 31.5 L 43 16.5 C 43 10.159 37.841 5 31.5 5 L 16.5 5 z M 34 12 C 35.105 12 36 12.895 36 14 C 36 15.104 35.105 16 34 16 C 32.895 16 32 15.104 32 14 C 32 12.895 32.895 12 34 12 z M 24 14 C 29.514 14 34 18.486 34 24 C 34 29.514 29.514 34 24 34 C 18.486 34 14 29.514 14 24 C 14 18.486 18.486 14 24 14 z M 24 17 A 7 7 0 1 0 24 31 A 7 7 0 1 0 24 17 z"></path>
         </svg>
       </a>
       <a href="#" class="facebook-icon">
@@ -194,49 +197,63 @@
 
 </div>
 <div class="main-container">
-<div class="row banner-content">
-<div class="col-md-6">
-  <h4>Título do Banner</h4>
-  <h4>Título do Banner</h4>
-</div>
-<div class="col-md-6">
-  <a href="#" class="btn btn-primary">Ver Mais</a>
-</div>
-</div>
+  <div class="row banner-content">
+    <div class="col-md-6">
+      <h4>
+        Título do Banner
+      </h4>
+      <h4>
+        Título do Banner
+      </h4>
+    </div>
+    <div class="col-md-6">
+      <a href="#" class="btn btn-primary">
+        Ver Mais
+      </a>
+    </div>
+  </div>
   <div class="fade-background"></div>
 
   <!-- Conteúdo da seção -->
   {% if videoFile is not null %}
-  <!-- Video Background Section -->
-  <div class="video-background mb-5">
-    <video autoplay muted loop width="100%" height="auto">
-      <source src="{{ video }}" type="video/mp4">
-    </video>
-    <div class="banner-content">
-      <h4>Título do Banner</h4>
-      <h4>Título do Banner</h4>
-      <h4>Título do Banner</h4>
-      <a href="#" class="btn btn-primary">Ver Mais</a>
-    </div>
-  </div>
-  {% else %}
-
-  <div class="slick-carousel" style="overflow-x:hidden; position: relative;">
-    {% for banner_entity in row._entity.field_banner %}
-      {% set estilo_banner = banner_entity.entity.uri.value|image_style('banner_home') %}
-      {% set file_path = file_url(estilo_banner) %}
-
-      <div class="banner-item">
-        <img class="img-fluid banner-home" src="{{ file_path }}" alt="Banner">
-
+    <!-- Video Background Section -->
+    <div class="video-background mb-5">
+      <video autoplay muted loop width="100%" height="auto">
+        <source src="{{ video }}" type="video/mp4"></video>
+        <div class="banner-content">
+          <h4>
+            Título do Banner
+          </h4>
+          <h4>
+            Título do Banner
+          </h4>
+          <h4>
+            Título do Banner
+          </h4>
+          <a href="#" class="btn btn-primary">
+            Ver Mais
+          </a>
+        </div>
       </div>
-    {% endfor %}
+    {% else %}
 
-    {% if loop.index > 1 %}
-    <button class="slick-prev" aria-label="Previous" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">Previous</button>
-    <button class="slick-next" aria-label="Next" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">Next</button>
-    {% endif %}
-  </div>
-  {% endif %}
-</div>
+      <div class="slick-carousel" style="overflow-x:hidden; position: relative;">
+        {% for banner_entity in row._entity.field_banner %}
+          {% set estilo_banner = banner_entity.entity.uri.value|image_style('banner_home') %}
+          {% set file_path = file_url(estilo_banner) %}
 
+          <div class="banner-item">
+            <img class="img-fluid banner-home" src="{{ file_path }}" alt="Banner"></div>
+          {% endfor %}
+
+          {% if loop.index > 1 %}
+            <button class="slick-prev" aria-label="Previous" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">
+              Previous
+            </button>
+            <button class="slick-next" aria-label="Next" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">
+              Next
+            </button>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
