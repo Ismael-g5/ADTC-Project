@@ -8,17 +8,7 @@
     width: 100%;
     overflow: hidden;
   }
-
-  .fade-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
-    z-index: 1;
-  }
-
+  
   .video-background,
   .slick-carousel {
     position: relative;
@@ -28,6 +18,7 @@
     margin-top: -40px;
     z-index: 0;
   }
+  
   .video-background {
     position: relative;
     width: 100%;
@@ -35,7 +26,7 @@
     overflow: hidden;
     margin-top: -40px;
   }
-
+  
   .video-background video {
     position: absolute;
     top: 50%;
@@ -46,45 +37,41 @@
     transform: translate(-50%, -50%);
     z-index: 1;
   }
-
+  
   .menu-overlay-container {
     position: relative;
     width: 100%;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%), url('caminho/para/sua/imagem-de-fundo.jpg');
-    background-size: cover;
-    background-position: center;
+    background: #ffffff; /* Fundo branco para o menu */
   }
-
-  .menu-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+  
+  .menu-overlay-new {
+    position: relative;
     width: 100%;
     height: 100px;
-    z-index: 2;
-    color: white;
+    z-index: 0;
+    color: black; /* Mudado para preto para contraste com o fundo branco */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)); /* Ajuste as opacidades conforme necessário */
-    }
-
+    background-color: #ffffff; /* Fundo branco sólido */
+  }
+  
   .logo {
     display: flex;
     align-items: center;
   }
-
+  
   .logo img {
     height: 100px;
   }
-
+  
   .menu-items {
     flex-grow: 1;
     display: flex;
     justify-content: center;
   }
-
+  
   .menu-items ul {
     list-style: none;
     padding: 0;
@@ -92,25 +79,25 @@
     display: flex;
     align-items: center;
   }
-
+  
   .menu-items li {
     margin: 0 10px;
   }
-
+  
   .menu-items a {
-    color: white;
+    color: black; /* Texto preto para contraste com o fundo branco */
     text-decoration: none;
     font-size: 19px;
     font-weight: 500;
     font-family: sans-serif;
     letter-spacing: 0.10em;
   }
-
+  
   .icons {
     display: flex;
     align-items: center;
   }
-
+  
   .icons a {
     display: inline-flex;
     align-items: center;
@@ -119,38 +106,39 @@
     height: 40px;
     border-radius: 50%;
     margin-right: 15px;
+    background-color: #000000; /* Fundo para os ícones (opcional) */
   }
-
+  
   .icons svg {
     width: 24px;
     height: 24px;
     fill: white;
   }
-
+  
   .slick-carousel {
     position: relative;
     width: 100%;
     height: 720px;
   }
-
+  
   .slick-prev, .slick-next {
     z-index: 3;
   }
-
+  
   .banner-item {
     position: relative;
     z-index: 2;
   }
-
-
+  
   .banner-content {
-  position: absolute;
-  top: 100px;
-  left: 20px;
-  z-index: 3;
-  color: #fff;
-  padding: 20px;
-}
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    z-index: 3;
+    color: #fff;
+    padding: 20px;
+  }
+  
 </style>
 
 {# main -> Itens do menu #}
@@ -159,7 +147,7 @@
 {% set menu_items = menu_tree_main['#items'] %}
 
 <div class="menu-overlay-container">
-  <div class="menu-overlay">
+  <div class="menu-overlay-new" style="background-color: white;">
     <div class="logo mt-3">
       <a href="{{ path('<front>') }}" title="Início">
         <img src="{{ path('<front>') }}{{ directory }}/assets/images/logo_adtc.png" class="img-responsive" draggable="false" />
@@ -196,64 +184,4 @@
   </div>
 
 </div>
-<div class="main-container">
-  <div class="row banner-content">
-    <div class="col-md-6">
-      <h4>
-        Título do Banner
-      </h4>
-      <h4>
-        Título do Banner
-      </h4>
-    </div>
-    <div class="col-md-6">
-      <a href="#" class="btn btn-primary">
-        Ver Mais
-      </a>
-    </div>
-  </div>
-  <div class="fade-background"></div>
 
-  <!-- Conteúdo da seção -->
-  {% if videoFile is not null %}
-    <!-- Video Background Section -->
-    <div class="video-background mb-5">
-      <video autoplay muted loop width="100%" height="auto">
-        <source src="{{ video }}" type="video/mp4"></video>
-        <div class="banner-content">
-          <h4>
-            Título do Banner
-          </h4>
-          <h4>
-            Título do Banner
-          </h4>
-          <h4>
-            Título do Banner
-          </h4>
-          <a href="#" class="btn btn-primary">
-            Ver Mais
-          </a>
-        </div>
-      </div>
-    {% else %}
-
-      <div class="slick-carousel" style="overflow-x:hidden; position: relative;">
-        {% for banner_entity in row._entity.field_banner %}
-          {% set estilo_banner = banner_entity.entity.uri.value|image_style('banner_home') %}
-          {% set file_path = file_url(estilo_banner) %}
-
-          <div class="banner-item">
-            <img class="img-fluid banner-home" src="{{ file_path }}" alt="Banner"></div>
-          {% endfor %}
-
-          {% if loop.index > 1 %}
-            <button class="slick-prev" aria-label="Previous" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">
-              Previous
-            </button>
-            <button class="slick-next" aria-label="Next" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">
-              Next
-            </button>
-          {% endif %}
-        </div>
-      {% endif %}
-    </div>
