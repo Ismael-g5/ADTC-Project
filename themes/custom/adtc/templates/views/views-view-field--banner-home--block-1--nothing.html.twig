@@ -15,7 +15,7 @@
     width: 100%;
     height: 720px;
     overflow: hidden;
-    margin-top: -40px;
+    
     z-index: 0;
   }
   
@@ -24,7 +24,7 @@
     width: 100%;
     height: 720px;
     overflow: hidden;
-    margin-top: -40px;
+    
   }
   
   .video-background video {
@@ -182,6 +182,52 @@
       </a>
     </div>
   </div>
+  <div class="row slide-banner-content">
+
+  <!-- Conteúdo da seção -->
+  {% if videoFile is not null %}
+    <!-- Video Background Section -->
+    <div class="video-background">
+      <video autoplay muted loop width="100%" height="auto">
+        <source src="{{ video }}" type="video/mp4"></video>
+        <div class="banner-content">
+          <h4>
+            Título do Banner
+          </h4>
+          <h4>
+            Título do Banner
+          </h4>
+          <h4>
+            Título do Banner
+          </h4>
+          <a href="#" class="btn btn-primary">
+            Ver Mais
+          </a>
+        </div>
+      </div>
+    {% else %}
+
+      <div class="slick-carousel" style="overflow-x:hidden; position: relative;">
+        {% for banner_entity in row._entity.field_banner %}
+          {% set estilo_banner = banner_entity.entity.uri.value|image_style('banner_home') %}
+          {% set file_path = file_url(estilo_banner) %}
+
+          <div class="banner-item">
+            <img class="img-fluid banner-home" src="{{ file_path }}" alt="Banner"></div>
+          {% endfor %}
+
+          {% if loop.index > 1 %}
+            <button class="slick-prev" aria-label="Previous" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">
+              Previous
+            </button>
+            <button class="slick-next" aria-label="Next" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">
+              Next
+            </button>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+</div>
 
 </div>
 
