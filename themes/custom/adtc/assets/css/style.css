@@ -102,10 +102,10 @@ h4 {
   }
   
   .menu-items a {
-    color: black; /* Texto preto para contraste com o fundo branco */
+    color: #1f39f2; /* Texto preto para contraste com o fundo branco */
     text-decoration: none;
     font-size: 19px;
-    font-weight: 500;
+    font-weight: 600;
     font-family: sans-serif;
     letter-spacing: 0.10em;
   }
@@ -156,3 +156,42 @@ h4 {
     padding: 20px;
   }
   
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+  .video-thumbnail, .overlay, .play-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .video-thumbnail {
+    z-index: 1;
+  }
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    transition: opacity 0.3s ease;
+  }
+  .play-button {
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .play-icon {
+    width: 460px;
+    height: 260px;
+  }
+  .video-container:hover .overlay,
+  .video-container:hover .play-button {
+    opacity: 0;
+  }
+

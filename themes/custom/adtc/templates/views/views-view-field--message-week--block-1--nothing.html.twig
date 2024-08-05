@@ -4,7 +4,6 @@
 {% set titleMessage = row._entity.field_title_message.value %}
 {% set videoId = video.split('v=')[1] %}
 {% set thumbnail = 'https://via.placeholder.com/560x315.png?text=Video+Thumbnail' %}
-{{dump(imageUrl)}}
 
 <div class="container mt-5">
   <div class="row block-message-week">
@@ -25,9 +24,12 @@
       </div>
     </div>
     <div class="col-md-6">
-      <div id="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <img src="{{ imageUrl}}" alt="Video thumbnail" id="video-thumbnail" style="width: 100%; height: 100%; cursor: pointer; position: absolute; top: 0; left: 0;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/YouTube_play_buttom_icon_%282013-2017%29.png" alt="Play icon" id="play-icon" style="width: 60px; height: 60px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;">
+      <div id="video-container" class="video-container">
+        <img src="{{ imageUrl }}" alt="Video thumbnail" class="video-thumbnail">
+        <div class="overlay"></div>
+        <a href="javascript:void(0);" onclick="abreVideo('{{ video }}')" class="play-button">
+          <img src="{{ path('<front>') }}{{ directory }}/assets/images/play.png" alt="Play icon" class="play-icon">
+        </a>
       </div>
       <hr class="my-2">
       <span class="message-theme-line text-center d-block">
@@ -38,8 +40,8 @@
 </div>
 
 <script>
-  document.getElementById('video-container').addEventListener('click', function() {
+  function abreVideo(videoUrl) {
     var videoContainer = document.getElementById('video-container');
-    videoContainer.innerHTML = '<iframe width="560" height="315" src="{{ video }}?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>';
-  });
+    videoContainer.innerHTML = '<iframe width="100%" height="100%" src="' + videoUrl + '?rel=0&amp;showinfo=0&amp;autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>';
+  }
 </script>
