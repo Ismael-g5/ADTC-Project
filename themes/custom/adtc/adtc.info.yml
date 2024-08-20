@@ -9,7 +9,6 @@ libraries:
   - adtc/bootstrap
   - adtc/slick
   - adtc/parallax
-  - adtc/masks
   - adtc/global-styling
 
 regions:

@@ -17,10 +17,7 @@ parallax:
     /libraries/parallax/parallax.min.js: {}
   dependencies:
     - core/jquery
-masks:
-  js:
-    /libraries/jquery-mask/jquery.mask.min.js: {}
-    assets/js/masks.js: {}
+
 slick:
   css:
     component:
