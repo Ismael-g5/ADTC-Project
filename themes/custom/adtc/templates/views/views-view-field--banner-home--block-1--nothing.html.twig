@@ -1,6 +1,5 @@
 {{ attach_library('adtc/slick') }}
 
-
 <style>
 /* Sombreamento na imagem */
 .banner-overlay {
@@ -79,12 +78,26 @@
         {% set file_path = file_url(estilo_banner) %}
         <div class="banner-item" style="position: relative;">
           <img class="img-fluid banner-home" src="{{ file_path }}" alt="Banner">
-          <div class="banner-overlay"></div> <!-- Sombreamento -->
-          <div class="banner-caption">
-            <p>teste</p> <!-- Texto de teste -->
+            <div class="banner-overlay"></div>
+            <!-- Sombreamento -->
+            <div class="banner-caption">
+              {% set content_banner_1 = row._entity.field_conteudo_1_banner.value %}
+              {% set content_banner_2 = row._entity.field_conteudo_2_banner.value %}
+              {% set content_banner_3 = row._entity.field_conteudo_3.value %}
+
+              <div class="subtitle-content-banner mb-3" style="font-weight: 600;">
+                {{ content_banner_1 }}
+              </div>
+              <div class="title-content-banner mb-3">
+                <h2>
+                  {{ content_banner_2|striptags|raw }}
+                </h2>
+              </div>
+            <button type="button" class="btn btn-secondary">Secondary</button>
+            </div>
           </div>
-        </div>
-      {% endfor %}
-    </div>
-  {% endif %}
-</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+  
