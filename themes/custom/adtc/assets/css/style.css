@@ -225,3 +225,74 @@ h4 {
 .video-container:hover .play-button {
   opacity: 0;
 }
+
+/* Sombreamento na imagem */
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade conforme necessário */
+  z-index: 1;
+}
+
+/* Centralização do texto no banner */
+.banner-caption {
+  position: absolute;
+  top: 50%;
+  left: 0; /* Alinhado à esquerda */
+  transform: translateY(-50%); /* Centraliza verticalmente em relação à altura do container */
+  color: white;
+  z-index: 2;
+  text-align: left; /* Alinha o texto à esquerda */
+  width: 100%; /* Garante que o banner-caption ocupe a largura total */
+  padding-left: 20px; /* Adiciona um pouco de margem à esquerda, ajuste conforme necessário */
+  box-sizing: border-box; /* Inclui o padding na largura total */
+}
+
+
+/* Estilo adicional para o texto */
+.banner-caption p {
+  font-size: 24px; /* Ajuste o tamanho do texto conforme necessário */
+  font-weight: bold;
+  margin: 0;
+}
+
+.text-flip-container {
+  position: relative;
+  height: 50px; /* Altura do container */
+  overflow: hidden;
+}
+
+.text-flip {
+  position: relative;
+  width: 100%;
+  height: 100%; /* Altura do container */
+  perspective: 1000px; /* Adiciona perspectiva para o efeito 3D */
+}
+
+.text-flip-item {
+  display: block;
+  font-size: 24px; /* Tamanho do texto */
+  text-align: center;
+  line-height: 50px; /* Alinhamento vertical do texto */
+  transform: rotateX(90deg);
+  opacity: 0;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  backface-visibility: hidden; /* Oculta o verso do item durante a rotação */
+}
+
+.text-flip-item.active {
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+
+.text-flip-item:not(.active) {
+  /* Adiciona uma classe para garantir que itens não ativos são ocultados corretamente */
+  opacity: 0;
+}

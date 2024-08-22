@@ -8,7 +8,7 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 850,
         arrows: false,
         dots: true,
         fade: true,
@@ -24,26 +24,7 @@
         $(".slick-carousel").slick("slickNext");
       });
 
-      // Animação de flip de texto
-      var items = $('.text-flip-item', context);
-      var currentIndex = 0;
-
-      // Adiciona a classe active ao primeiro item após a página carregar
-      items.eq(currentIndex).addClass('active');
-
-      function flipText() {
-        // Remove a classe ativa do texto atual
-        items.eq(currentIndex).removeClass('active');
-
-        // Incrementa o índice
-        currentIndex = (currentIndex + 1) % items.length;
-
-        // Adiciona a classe ativa ao próximo texto
-        items.eq(currentIndex).addClass('active');
-      }
-
-      // Inicia o efeito de rolagem a cada 3 segundos
-      setInterval(flipText, 2000);
+     
     }
   };
 })(jQuery, Drupal);
