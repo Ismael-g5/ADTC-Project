@@ -1,8 +1,4 @@
-/**
- * @file
- * Subtheme specific CSS.
- */
- body {
+body {
   font-family: museo-sans, sans-serif;
   color: black;
   font-size: 14px;
@@ -10,188 +6,222 @@
   text-decoration: none;
   overflow-x: hidden;
 }
+
 h4 {
   font-size: 18px;
 }
 
-.titulo-icone-topo{
+.titulo-icone-topo {
   margin-left: 15px;
 }
-.conteudo-icones{
-  margin-left: 15px;
-}
-  .main-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .video-background,
-  .slick-carousel {
-    position: relative;
-    width: 100%;
-    height: 720px;
-    overflow: hidden;
-    
-    z-index: 0;
-  }
-  
-  .video-background {
-    position: relative;
-    width: 100%;
-    height: 720px;
-    overflow: hidden;
-    
-  }
-  
-  .video-background video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-  }
-  
-  .menu-overlay-container {
-    position: relative;
-    width: 100%;
-    background: #ffffff; /* Fundo branco para o menu */
-  }
-  
-  .menu-overlay-new {
-    position: relative;
-    width: 100%;
-    height: 100px;
-    z-index: 0;
-    color: black; /* Mudado para preto para contraste com o fundo branco */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff; /* Fundo branco sólido */
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo img {
-    height: 100px;
-  }
-  
-  .menu-items {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .menu-items ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-  }
-  
-  .menu-items li {
-    margin: 0 10px;
-  }
-  
-  .menu-items a {
-    color: #1f39f2; /* Texto preto para contraste com o fundo branco */
-    text-decoration: none;
-    font-size: 19px;
-    font-weight: 600;
-    font-family: sans-serif;
-    letter-spacing: 0.10em;
-  }
-  
-  .icons {
-    display: flex;
-    align-items: center;
-  }
-  
-  .icons a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 15px;
-    background-color: #000000; /* Fundo para os ícones (opcional) */
-  }
-  
-  .icons svg {
-    width: 24px;
-    height: 24px;
-    fill: white;
-  }
-  
-  .slick-carousel {
-    position: relative;
-    width: 100%;
-    height: 720px;
-  }
-  
-  .slick-prev, .slick-next {
-    z-index: 3;
-  }
-  
-  .banner-item {
-    position: relative;
-    z-index: 2;
-  }
-  
-  .banner-content {
-    position: absolute;
-    top: 100px;
-    left: 20px;
-    z-index: 3;
-    color: #fff;
-    padding: 20px;
-  }
-  
-  .video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    height: auto;
-    cursor: pointer;
-  }
-  .video-thumbnail, .overlay, .play-button {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .video-thumbnail {
-    z-index: 1;
-  }
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2;
-    transition: opacity 0.3s ease;
-  }
-  .play-button {
-    z-index: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .play-icon {
-    width: 460px;
-    height: 260px;
-  }
-  .video-container:hover .overlay,
-  .video-container:hover .play-button {
-    opacity: 0;
-  }
 
+.conteudo-icones {
+  margin-left: 15px;
+}
+
+.main-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.menu-overlay-container {
+  position: absolute; /* Sobrepõe o banner */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10; /* Garantir que o menu esteja acima do carrossel */
+}
+.banner-item img {
+  width: 100%; /* Garante que a imagem ocupe 100% do espaço do contêiner */
+  height: auto; /* Mantém a proporção da imagem */
+  display: block; /* Remove possíveis espaços extras ao redor da imagem */
+  overflow: hidden; /* Evita o scroll na imagem */
+}
+.banner-item {
+  position: relative;
+  width: 100%;
+  height: 100%; /* Garante que a altura do item seja 100% da altura do carrossel */
+  overflow: hidden; /* Evita scroll dentro do item */
+}
+
+
+.menu-overlay-new {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  background-color: white; /* Fundo branco */
+  color: black; /* Texto preto para os itens do menu */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 100px;
+}
+
+.menu-items {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-items ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.menu-items li {
+  margin: 0 10px;
+}
+
+.menu-items a {
+  margin-left: 30px;
+    padding: 40px 0px;
+    float: none;
+    transition-delay: initial;
+    font-family: museo-sans, sans-serif;
+    color: #333;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: right;
+    letter-spacing: 0px;
+    text-decoration: none;
+    text-transform: none;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+}
+
+.icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+  background-color: transparent; /* Remove o fundo dos ícones */
+}
+
+.icons svg {
+  width: 24px;
+  height: 24px;
+  fill: black; /* Ícones na cor preta */
+}
+
+.slick-carousel {
+  position: relative;
+  width: 100%;
+  height: 720px;
+  overflow-x: hidden; /* Esconde o overflow horizontal */
+}
+
+.slick-prev, .slick-next {
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5); /* Mantém os botões de navegação do carrossel */
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.slick-prev:hover, .slick-next:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Ajusta a cor ao passar o mouse */
+}
+
+.slick-prev::before, .slick-next::before {
+  font-size: 20px;
+}
+
+.slick-prev {
+  left: 20px;
+}
+
+.slick-next {
+  right: 20px;
+}
+
+.slick-dots {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.slick-dots li {
+  margin: 0 8px; /* Aumenta o espaçamento entre as barras */
+}
+
+.slick-dots li button {
+  width: 30px; /* Largura da barra */
+  height: 3px; /* Altura reduzida da barra */
+  background-color: #ccc; /* Cor da barra inativa */
+  border-radius: 0; /* Remover arredondamento */
+  padding: 0;
+  border: none;
+}
+
+.slick-dots li.slick-active button {
+  background-color: #0000004d; /* Cor da barra ativa */
+}
+
+.slick-dots li button:before {
+  content: ''; /* Remover conteúdo padrão */
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+.video-thumbnail, .overlay, .play-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.video-thumbnail {
+  z-index: 1;
+}
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+.play-button {
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.play-icon {
+  width: 460px;
+  height: 260px;
+}
+.video-container:hover .overlay,
+.video-container:hover .play-button {
+  opacity: 0;
+}

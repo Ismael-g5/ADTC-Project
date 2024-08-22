@@ -17,7 +17,6 @@ parallax:
     /libraries/parallax/parallax.min.js: {}
   dependencies:
     - core/jquery
-
 slick:
   css:
     component:

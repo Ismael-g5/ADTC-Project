@@ -1,6 +1,4 @@
 {{ attach_library('adtc/slick') }}
-{% set videoFile = row._entity.field_video_banner.entity.fileuri %}
-{% set video = file_url(videoFile) %}
 
 {# main -> Itens do menu #}
 {% set menu_main = 'main' %}
@@ -8,87 +6,48 @@
 {% set menu_items = menu_tree_main['#items'] %}
 
 <div class="menu-overlay-container">
-  <div class="menu-overlay-new" style="background-color: white;">
-    <div class="logo mt-3">
-      <a href="{{ path('<front>') }}" title="Início">
-        <img src="{{ path('<front>') }}{{ directory }}/assets/images/logo_adtc.png" class="img-responsive" draggable="false" />
-      </a>
-    </div>
-    <div class="menu-items" style="color: #1f39f2;">
-      <ul class="institucional-menu">
-        {% for item in menu_items %}
-          <li class="item list-unstyled">
-            <a href="{{ item.url }}" class="link-menu menu-title" target="_blank">
-              {{ item.title }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="icons">
-      <a href="" class="">
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24">
-          <path d="M19.077,4.928C17.191,3.041,14.683,2.001,12.011,2c-5.506,0-9.987,4.479-9.989,9.985 c-0.001,1.76,0.459,3.478,1.333,4.992L2,22l5.233-1.237c1.459,0.796,3.101,1.215,4.773,1.216h0.004 c5.505,0,9.986-4.48,9.989-9.985C22.001,9.325,20.963,6.816,19.077,4.928z M16.898,15.554c-0.208,0.583-1.227,1.145-1.685,1.186 c-0.458,0.042-0.887,0.207-2.995-0.624c-2.537-1-4.139-3.601-4.263-3.767c-0.125-0.167-1.019-1.353-1.019-2.581 S7.581,7.936,7.81,7.687c0.229-0.25,0.499-0.312,0.666-0.312c0.166,0,0.333,0,0.478,0.006c0.178,0.007,0.375,0.016,0.562,0.431 c0.222,0.494,0.707,1.728,0.769,1.853s0.104,0.271,0.021,0.437s-0.125,0.27-0.249,0.416c-0.125,0.146-0.262,0.325-0.374,0.437 c-0.125,0.124-0.255,0.26-0.11,0.509c0.146,0.25,0.646,1.067,1.388,1.728c0.954,0.85,1.757,1.113,2.007,1.239 c0.25,0.125,0.395,0.104,0.541-0.063c0.146-0.166,0.624-0.728,0.79-0.978s0.333-0.208,0.562-0.125s1.456,0.687,1.705,0.812 c0.25,0.125,0.416,0.187,0.478,0.291C17.106,14.471,17.106,14.971,16.898,15.554z"></path>
-        </svg>
-      </a>
-      <a href="#" class="instagram-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48">
-          <path d="M 16.5 5 C 10.159 5 5 10.159 5 16.5 L 5 31.5 C 5 37.841 10.159 43 16.5 43 L 31.5 43 C 37.841 43 43 37.841 43 31.5 L 43 16.5 C 43 10.159 37.841 5 31.5 5 L 16.5 5 z M 34 12 C 35.105 12 36 12.895 36 14 C 36 15.104 35.105 16 34 16 C 32.895 16 32 15.104 32 14 C 32 12.895 32.895 12 34 12 z M 24 14 C 29.514 14 34 18.486 34 24 C 34 29.514 29.514 34 24 34 C 18.486 34 14 29.514 14 24 C 14 18.486 18.486 14 24 14 z M 24 17 A 7 7 0 1 0 24 31 A 7 7 0 1 0 24 17 z"></path>
-        </svg>
-      </a>
-      <a href="#" class="facebook-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="facebook-icon">
-          <path d="M12,2C6.477,2,2,6.477,2,12c0,5.013,3.693,9.153,8.505,9.876V14.65H8.031v-2.629h2.474v-1.749 c0-2.896,1.411-4.167,3.818-4.167c1.153,0,1.762,0.085,2.051,0.124v2.294h-1.642c-1.022,0-1.379,0.969-1.379,2.061v1.437h2.995 l-0.406,2.629h-2.588v7.247C18.235,21.236,22,17.062,22,12C22,6.477,17.523,2,12,2z"></path>
-        </svg>
-      </a>
-    </div>
-  </div>
-  <div class="row slide-banner-content">
-
-  <!-- Conteúdo da seção -->
-  {% if videoFile is not null %}
-    <!-- Video Background Section -->
-    <div class="video-background">
-      <video autoplay muted loop width="100%" height="auto">
-        <source src="{{ video }}" type="video/mp4"></video>
-        <div class="banner-content">
-          <h4>
-            Título do Banner
-          </h4>
-          <h4>
-            Título do Banner
-          </h4>
-          <h4>
-            Título do Banner
-          </h4>
-          <a href="#" class="btn btn-primary">
-            Ver Mais
+  <div class="row menu-main">
+    <div class="menu-overlay-new">
+      <div class="col-md-3 pr-0 d-flex flex-column align-items-center jutify-content-center">
+        <div class="logo">
+          <a href="{{ path('<front>') }}" title="Início">
+            <img width="266" style="height: 15%;"  src="{{ path('<front>') }}{{ directory }}/assets/images/logo_adtc.png" class="img-responsive" draggable="false" />
           </a>
         </div>
       </div>
-    {% else %}
 
-      <div class="slick-carousel" style="overflow-x:hidden; position: relative;">
-        {% for banner_entity in row._entity.field_banner %}
-          {% set estilo_banner = banner_entity.entity.uri.value|image_style('banner_home') %}
-          {% set file_path = file_url(estilo_banner) %}
-
-          <div class="banner-item">
-            <img class="img-fluid banner-home" src="{{ file_path }}" alt="Banner"></div>
-          {% endfor %}
-
-          {% if loop.index > 1 %}
-            <button class="slick-prev" aria-label="Previous" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">
-              Previous
-            </button>
-            <button class="slick-next" aria-label="Next" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">
-              Next
-            </button>
-          {% endif %}
+      <div class="col-md-6  d-flex flex-column align-items-center jutify-content-center">
+        <div class="menu-items" style="color: #1f39f2;">
+          <ul class="institucional-menu">
+            {% for item in menu_items %}
+              <li class="item list-unstyled">
+                <a href="{{ item.url }}" class="link-menu menu-title" target="_blank">
+                  {{ item.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
         </div>
-      {% endif %}
+      </div>
+     
+     <div class="col-md-3 col-sm-12 col-top col-top-3 pl-0 search-item">
+    {{ drupal_form('Drupal\\search\\Form\\SearchBlockForm') }}
     </div>
+      
+    </div>
+  </div>
 </div>
 
-</div>
-
+<div class="row slide-banner-content">
+  {% if row._entity.field_banner is not null %}
+  <div class="slick-carousel" style="overflow-x:hidden; overflow-y:hidden; position: relative;">
+  {% for banner_entity in row._entity.field_banner %}
+        {% set estilo_banner = banner_entity.entity.uri.value|image_style('banner_home') %}
+        {% set file_path = file_url(estilo_banner) %}
+        <div class="banner-item">
+          <img class="img-fluid banner-home" src="{{ file_path }}" alt="Banner"></div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+  
