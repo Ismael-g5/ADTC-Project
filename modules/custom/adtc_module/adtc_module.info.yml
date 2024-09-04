@@ -1,0 +1,7 @@
+name: 'Adtc'
+type: module
+description: 'Módulo para exibir conteúdos personalizados.'
+package: Custom
+core_version_requirement: ^10
+dependencies: []
+version: 1.0

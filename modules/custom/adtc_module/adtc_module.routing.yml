@@ -1,0 +1,7 @@
+meu_modulo.content:
+  path: '/sobre-nos/conteudo'
+  defaults:
+    _controller: '\Drupal\adtc_module\Controller\AdtcModuleController::index'
+    _title: 'Minha Página Customizada'
+  requirements:
+    _permission: 'access content'
