@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implementa o hook_theme().
+ */
+function adtc_module_theme() {
+  return [
+    'meu_template_customizado' => [
+      'variables' => [
+        'content' => NULL,
+      ],
+      'template' => 'index', // Aponta para o template 'index.html.twig'
+    ],
+  ];
+}

@@ -1,0 +1,11 @@
+<h2>Sobre Nós</h2>
+  <ul>
+    {% for item in content %}
+      <li>
+        <a href="/node/{{ item.nid }}">{{ item.title }}</a>
+      </li>
+    {% else %}
+      <li>Nenhum conteúdo encontrado.</li>
+    {% endfor %}
+  </ul>
+  

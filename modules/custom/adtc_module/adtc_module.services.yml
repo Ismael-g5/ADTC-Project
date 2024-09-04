@@ -1,0 +1,4 @@
+services:
+  adtc_module.custom_service:
+    class: 'Drupal\adtc_module\Service\AdtcModuleService'
+    arguments: ['@database']

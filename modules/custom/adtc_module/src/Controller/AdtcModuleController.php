@@ -3,15 +3,32 @@
 namespace Drupal\adtc_module\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\adtc_module\Service\AdtcModuleService;
 
 class AdtcModuleController extends ControllerBase {
 
+  protected $customService;
+
+  public function __construct(AdtcModuleService $customService) {
+    $this->customService = $customService;
+  }
+
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('adtc_module.custom_service')
+    );
+  }
+
   public function index() {
-    // Aqui você pode adicionar o conteúdo dinâmico.
-    $output = [
-      '#markup' => $this->t('Olá, este é o conteúdo da minha página customizada!'),
+    // Busca dados do serviço (conteúdos do tipo "sobre_nos").
+    $content = $this->customService->getContentFromDatabase();
+
+    // Renderiza os dados com o template 'index.html.twig'.
+    return [
+      '#theme' => 'meu_template_customizado',
+      '#content' => $content,
     ];
-    return $output;
   }
 
 }
