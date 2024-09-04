@@ -5,7 +5,7 @@
  */
 function adtc_module_theme() {
   return [
-    'meu_template_customizado' => [
+    'adtc_template_custom' => [
       'variables' => [
         'content' => NULL,
       ],

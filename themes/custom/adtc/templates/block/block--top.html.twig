@@ -15,35 +15,38 @@
     <div{{ content_attributes.addClass('content') }}>
       <div class="container container-top">
         <div class="row row-top-desktop row-top align-items-center d-none d-sm-flex">
-          <div class="col-md-2 col-12 col-top col-top-1 pr-0">
+          <div class="col-md-3 pr-0 d-flex flex-column align-items-center justify-content-center">
             <div class="wrap-logo">
               <a href="{{ path('<front>') }}" title="Início">
-                <img src="{{ path('<front>') }}{{directory}}/assets/images/logo_adtc.png" class="img-responsive" draggable="false" higth="55px" />
-              </a>
+                  <img src="{{ path('<front>') }}{{ directory }}/assets/images/logo_adtc.png" class="img-responsive" draggable="false" higth="55px" />
+
+                </a>
             </div>
           </div>
-          <div class="col-md-7 col-sm-12 col-top col-top-2 px-0">
-            <div id="wrap-main-menu-desktop">{{ drupal_menu('main') }}</div>
+          <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div id="wrap-main-menu-desktop menu-items">{{ drupal_menu('main') }}</div>
           </div>
-
+          <div class="col-md-3 col-sm-12 col-top col-top-3 pl-0 search-item">
+            {{ drupal_form('Drupal\\search\\Form\\SearchBlockForm') }}
+          </div>
         </div>
 
         <div class="row-top-mobile row-top align-items-center d-flex d-sm-none py-2 justify-content-between">
           <div class="wrap-logo">
             <a href="{{ path('<front>') }}" title="Início">
-              <img src="{{ path('<front>') }}{{directory}}/assets/images/logo_adtc.png" class="img-responsive" draggable="false" higth="55px" />
+              <img width="266" style="height: 15%;" src="{{ path('<front>') }}{{ directory }}/assets/images/logo_adtc.png" class="img-responsive" draggable="false" />
             </a>
           </div>
           <div id="menu-toggle-mobile">
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
-            </button>
+            </button>                     
           </div>
         </div>
         <div class="collapse" id="navbarSupportedContent">
           <div id="wrap-main-menu-mobile" class="text-center">{{ drupal_menu('main') }}</div>
           <div id="wrap-search-form-mobile" class="text-center pt-3">{{ drupal_form('Drupal\\search\\Form\\SearchBlockForm') }}</div>
-        </div>
+        </div>        
       </div>
     </div>
   {% endblock %}

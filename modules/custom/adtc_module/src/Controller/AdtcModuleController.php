@@ -26,7 +26,7 @@ class AdtcModuleController extends ControllerBase {
 
     // Renderiza os dados com o template 'index.html.twig'.
     return [
-      '#theme' => 'meu_template_customizado',
+      '#theme' => 'adtc_template_custom',
       '#content' => $content,
     ];
   }

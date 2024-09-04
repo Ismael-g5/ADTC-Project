@@ -43,3 +43,7 @@ function adtc_theme_suggestions_block_alter(array &$suggestions, array $variable
     array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
   }
 }
+
+function adtc_theme_preprocess(&$variables, $hook) {
+  $variables['site_logo'] = \Drupal::theme()->getActiveTheme()->getLogo();
+}
