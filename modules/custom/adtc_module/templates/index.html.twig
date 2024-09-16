@@ -1,17 +1,19 @@
-<h2>Sobre Nós</h2>
-  <div class="row content-ab">
- 
-  {% for item in content %}
-   <div class="col-md-3">
-    <a href="/node/{{ item.nid }}">{{ item.title }}</a>
-    <div class="content-description">
-    <img style="width: 50px; height: 50px;" src="{{ item.image_url }}" alt="{{ item.title }}">
-
-  </div>
-  </div>
-{% endfor %}
-
-</div>
- 
-   
+<div class="webform-submissions">
+  <h1 class="title-form text-center">Submissões do Webform Membros Cadastro</h1>
+  <div class="row">
   
+    {% for item in content %}
+      <div class="col-md-4">
+        <h4 class="name-member"><b>{{ item.nome_do_membro }}</b></h4>
+        <p>Email: {{ item.email }}</p>
+        <p>Endereço: {{ item.endereco.address }} - {{item.endereco.city}} </p>
+        <p>CPF: {{ item.cpf }}</p>
+        <p>Nome do Administrador: {{ item.nome_do_administrador }}</p>
+        <p>Nome da Congregação: {{ item.nome_da_congregacao }}</p>
+        {% if item.imagem %}
+          <p><img src="{{ item.imagem }}" alt="Imagem do Membro"></p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>

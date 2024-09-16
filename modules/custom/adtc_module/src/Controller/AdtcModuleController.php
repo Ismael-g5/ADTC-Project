@@ -22,7 +22,7 @@ class AdtcModuleController extends ControllerBase {
 
   public function index() {
     // Busca dados do serviço (conteúdos do tipo "sobre_nos").
-    $content = $this->customService->getContentFromDatabase();
+    $content = $this->customService->getWebformSubmissions();
 
     // Renderiza os dados com o template 'index.html.twig'.
     return [

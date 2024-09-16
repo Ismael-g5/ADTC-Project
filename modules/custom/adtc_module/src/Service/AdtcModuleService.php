@@ -13,31 +13,66 @@ class AdtcModuleService {
     $this->database = $database;
   }
 
-  // Método para buscar conteúdos do tipo "sobre_nos", incluindo a imagem.
   public function getContentFromDatabase() {
-    // Buscar nodes do tipo 'sobre_nos'.
     $query = $this->database->select('node_field_data', 'n')
       ->fields('n', ['nid', 'title'])
       ->condition('n.type', 'sobre_nos');
 
-    // Juntar com a tabela do campo field_imagem_ab.
     $query->leftJoin('node__field_imagem_ab', 'i', 'n.nid = i.entity_id');
     $query->fields('i', ['field_imagem_ab_target_id']);
 
     $results = $query->execute()->fetchAll();
 
-    // Adicionar a URL da imagem para cada resultado.
     foreach ($results as $result) {
       if ($result->field_imagem_ab_target_id) {
         $file = File::load($result->field_imagem_ab_target_id);
         if ($file) {
-          // Usar o serviço de geração de URL.
           $result->image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
         }
       }
     }
 
     return $results;
+  }
+
+  public function getWebformSubmissions() {
+    $webform_id = 'membros_cadastro'; // Identificador da Webform
+
+    // Carrega todas as submissões do webform
+    $submissions = \Drupal::entityTypeManager()
+      ->getStorage('webform_submission')
+      ->loadByProperties(['webform_id' => $webform_id]);
+
+    $data = [];
+
+    // Percorre cada submissão e extrai os dados
+    foreach ($submissions as $submission) {
+      /** @var \Drupal\webform\Entity\WebformSubmission $submission */
+      $submission_data = $submission->getData();
+
+      $data[] = [
+        'nome_do_membro' => $submission_data['nome_do_membro'] ?? '',
+        'email' => $submission_data['email'] ?? '',
+        'endereco' => $submission_data['endereco_m'] ?? '',
+        'cpf' => $submission_data['cpf'] ?? '',
+        'nome_do_administrador' => $submission_data['nome_do_administrador'] ?? '',
+        'nome_da_congregacao' => $submission_data['nome_da_congregacao'] ?? '',
+        'imagem' => $this->getFileUrl($submission_data['imagem'] ?? NULL),
+      ];
+    }
+
+    return $data;
+  }
+
+  // Método para gerar a URL da imagem
+  protected function getFileUrl($file_id) {
+    if ($file_id) {
+      $file = File::load($file_id);
+      if ($file) {
+        return \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+      }
+    }
+    return NULL;
   }
 
 }

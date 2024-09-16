@@ -1,7 +1,15 @@
 meu_modulo.content:
-  path: '/sobre-nos/conteudo'
+  path: '/sobre-nos/membros'
   defaults:
     _controller: '\Drupal\adtc_module\Controller\AdtcModuleController::index'
-    _title: 'Minha Página Customizada'
+    _title: 'Membros'
+  requirements:
+    _permission: 'access content'
+
+adtc_form.content:
+  path: '/sobre-nos/membros/dados'
+  defaults:
+    _controller: '\Drupal\adtc_module\Controller\AdtcModuleController::index'
+    _title: 'Membros - Dados'
   requirements:
     _permission: 'access content'
