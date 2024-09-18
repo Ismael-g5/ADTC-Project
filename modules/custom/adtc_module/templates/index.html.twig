@@ -1,5 +1,32 @@
 <div class="webform-submissions">
   <h1 class="title-form text-center">Submissões do Webform Membros Cadastro</h1>
+  
+  
+<div class="d-flex justify-content-center form-where-find">
+<div class="container">
+  <form>
+    <div class="row g-3 mb-3">
+      <div class="col-md-5">
+        <select class="form-select state-where-find required" id="stateSelect">
+          <option selected class="state-hidden">Bairro/Localidade</option>
+          {% for item in content %}
+          
+            <option class="option-address" data-address = "{{item.endereco.address}}">{{ item.endereco.address }} - {{item.endereco.city}} </option>
+           
+        {% endfor %}
+         
+        </select>
+      </div>
+      <div class="col-md-5 city-where-find">
+        <select class="form-select city-where-find required" id="city-where-find">
+          <option selected class="cong-hidden">Congregação</option>
+        
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary text-center btn-where-find text-white">BUSCAR</button>
+      </div>
+    </div>
   <div class="row">
   
     {% for item in content %}

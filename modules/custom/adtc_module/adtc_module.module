@@ -13,3 +13,8 @@ function adtc_module_theme() {
     ],
   ];
 }
+
+function adtc_module_attachments(array &$page) {
+    $base_url = Url::fromRoute('/sobre-nos/membros/dados', [], ['absolute' => TRUE]);
+    $page['#attached']['drupalSettings']['custom_config']['baseUrl'] = $base_url->toString();
+}
