@@ -30,12 +30,13 @@
             </select>
           </div>
 
-          <div class="col-md-2">
-            <button type="submit" class="btn btn-primary text-center btn-where-find text-white">BUSCAR</button>
-          </div>
+          <div class="col-md-4 d-flex justify-content-between gap-2">
+        <button id="search-button" class="btn btn-primary btn-lg text-center btn-where-find text-white w-100">BUSCAR</button>
+        <button id="clear-filter-btn" class="btn btn-danger btn-lg w-100">Limpar Filtro</button>
+      </div>
         </div>
-        
-        <div class="row">
+      </form>
+        <div id="initial-content" class="row">
           {% for item in content %}
             <div class="col-md-4">
               <h4 class="name-member"><b>{{ item.nome_do_membro }}</b></h4>
@@ -50,7 +51,7 @@
             </div>
           {% endfor %}
         </div>
-      </form>
+      <div id="filter-content" class="row"></div>
     </div>
   </div>
 </div>

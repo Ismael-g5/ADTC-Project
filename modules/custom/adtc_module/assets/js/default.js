@@ -3,7 +3,7 @@
   $('#addressSelect').change(function () {
     var filterString = $(this).val();
     var [address, city] = filterString.split('-');
-    
+
     $.ajax({
       url: 'http://localhost/Site-ADTC/api/v1/membros/all',
       method: 'GET',
@@ -36,6 +36,77 @@
         console.log('Erro:', status, error);
       }
     });
+
+
   });
+
+
+  // Evento de clique para o botão de filtro
+// Evento de clique para o botão de filtro
+$('.btn-where-find').on('click', function (event) {
+  event.preventDefault(); // Impede o envio do formulário
+  
+  var filterString = $('#addressSelect').val();
+  var [address, city] = filterString.split('-');
+  var congregation = $('#congregation').val();
+
+  // Faz a requisição AJAX
+  $.ajax({
+    url: 'http://localhost/Site-ADTC/api/v1/membros/all',
+    method: 'GET',
+    success: function (response) {
+      // Filtra os dados com base no address, city e congregation
+      var filteredData = response.filter(function (item) {
+        return item.endereco.address === address && item.endereco.city === city && item.nome_da_congregacao === congregation;
+      });
+
+      // Oculta o conteúdo inicial
+      $('#initial-content').css('display', 'none');
+
+      // Gera o HTML dinamicamente
+      var htmlContent = '<div id="filter-content" class="row">';
+      
+      filteredData.forEach(function (item) {
+        htmlContent += `
+          <div class="col-md-4">
+            <h4 class="name-member"><b>${item.nome_do_membro}</b></h4>
+            <p>Email: ${item.email}</p>
+            <p>Endereço: ${item.endereco.address} - ${item.endereco.city}</p>
+            <p>CPF: ${item.cpf}</p>
+            <p>Nome do Administrador: ${item.nome_do_administrador}</p>
+            <p>Nome da Congregação: ${item.nome_da_congregacao}</p>`;
+        
+        if (item.imagem) {
+          htmlContent += `<p><img src="${item.imagem}" alt="Imagem do Membro"></p>`;
+        }
+
+        htmlContent += `</div>`;
+      });
+
+      htmlContent += '</div>';
+
+      // Insere o conteúdo gerado no DOM
+      $('#filter-content').html(htmlContent);
+    },
+    error: function (xhr, status, error) {
+      console.log('Erro:', status, error);
+    }
+  });
+});
+
+// Evento de clique para o botão de limpar filtro
+$('.btn-clear-filter').on('click', function () {
+  // Exibe o conteúdo inicial
+  $('#initial-content').css('display', 'block');
+
+  // Limpa o conteúdo filtrado
+  $('#filter-content').empty();
+
+  // Reseta o select e outros valores
+  $('#addressSelect').val('');
+  $('#congregation').val('');
+});
+
+  
 
 })(jQuery);
