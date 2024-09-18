@@ -7,18 +7,18 @@
   <form>
     <div class="row g-3 mb-3">
       <div class="col-md-5">
-        <select class="form-select state-where-find required" id="stateSelect">
+        <select class="form-select address-where-find required" id="addressSelect">
           <option selected class="state-hidden">Bairro/Localidade</option>
           {% for item in content %}
           
-            <option class="option-address" data-address = "{{item.endereco.address}}">{{ item.endereco.address }} - {{item.endereco.city}} </option>
+            <option class="option-address" value="{{ item.endereco.address }}-{{item.endereco.city}}" data-address = "{{item.endereco.address}}">{{ item.endereco.address }} - {{item.endereco.city}}</option>
            
         {% endfor %}
          
         </select>
       </div>
-      <div class="col-md-5 city-where-find">
-        <select class="form-select city-where-find required" id="city-where-find">
+      <div class="col-md-5 congregation">
+        <select class="form-select congregation-find required" id="congregation">
           <option selected class="cong-hidden">Congregação</option>
         
         </select>
