@@ -17,12 +17,16 @@
         $congregationSelect.empty(); // Limpe as opções existentes
 
         if (filteredData.length > 0) {
-          // Adicione uma opção padrão
-          //$congregationSelect.append($('<option>').text('Select Congregation').val(''));
-          
-          // Adicione uma opção para cada nome_da_congregacao
+          // Usar um Set para garantir que os valores sejam únicos
+          var uniqueCongregations = new Set();
+
           filteredData.forEach(function (item) {
-            $congregationSelect.append($('<option>').text(item.nome_da_congregacao).val(item.nome_da_congregacao));
+            uniqueCongregations.add(item.nome_da_congregacao);
+          });
+
+          // Adicionar opções únicas ao select
+          uniqueCongregations.forEach(function (congregation) {
+            $congregationSelect.append($('<option>').text(congregation).val(congregation));
           });
         } else {
           console.log('No matching data found.');

@@ -1,46 +1,56 @@
 <div class="webform-submissions">
   <h1 class="title-form text-center">Submissões do Webform Membros Cadastro</h1>
   
-  
-<div class="d-flex justify-content-center form-where-find">
-<div class="container">
-  <form>
-    <div class="row g-3 mb-3">
-      <div class="col-md-5">
-        <select class="form-select address-where-find required" id="addressSelect">
-          <option selected class="state-hidden">Bairro/Localidade</option>
-          {% for item in content %}
-          
-            <option class="option-address" value="{{ item.endereco.address }}-{{item.endereco.city}}" data-address = "{{item.endereco.address}}">{{ item.endereco.address }} - {{item.endereco.city}}</option>
-           
-        {% endfor %}
-         
-        </select>
-      </div>
-      <div class="col-md-5 congregation">
-        <select class="form-select congregation-find required" id="congregation">
-          <option selected class="cong-hidden">Congregação</option>
+  <div class="d-flex justify-content-center form-where-find">
+    <div class="container">
+      <form>
+        <div class="row g-3 mb-3">
+          <div class="col-md-5">
+            <select class="form-select address-where-find required" id="addressSelect">
+              <option selected class="state-hidden">Bairro/Localidade</option>
+              
+              {% set unique_addresses = [] %}
+              {% for item in content %}
+                {% set address_key = item.endereco.address ~ '-' ~ item.endereco.city %}
+                
+                {% if address_key not in unique_addresses %}
+                  <option class="option-address" value="{{ item.endereco.address }}-{{item.endereco.city}}" data-address="{{item.endereco.address}}">
+                    {{ item.endereco.address }} - {{ item.endereco.city }}
+                  </option>
+
+                  {% set unique_addresses = unique_addresses|merge([address_key]) %}
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col-md-5 congregation">
+            <select class="form-select congregation-find required" id="congregation">
+              <option selected class="cong-hidden">Congregação</option>
+            </select>
+          </div>
+
+          <div class="col-md-2">
+            <button type="submit" class="btn btn-primary text-center btn-where-find text-white">BUSCAR</button>
+          </div>
+        </div>
         
-        </select>
-      </div>
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-primary text-center btn-where-find text-white">BUSCAR</button>
-      </div>
+        <div class="row">
+          {% for item in content %}
+            <div class="col-md-4">
+              <h4 class="name-member"><b>{{ item.nome_do_membro }}</b></h4>
+              <p>Email: {{ item.email }}</p>
+              <p>Endereço: {{ item.endereco.address }} - {{item.endereco.city}} </p>
+              <p>CPF: {{ item.cpf }}</p>
+              <p>Nome do Administrador: {{ item.nome_do_administrador }}</p>
+              <p>Nome da Congregação: {{ item.nome_da_congregacao }}</p>
+              {% if item.imagem %}
+                <p><img src="{{ item.imagem }}" alt="Imagem do Membro"></p>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </form>
     </div>
-  <div class="row">
-  
-    {% for item in content %}
-      <div class="col-md-4">
-        <h4 class="name-member"><b>{{ item.nome_do_membro }}</b></h4>
-        <p>Email: {{ item.email }}</p>
-        <p>Endereço: {{ item.endereco.address }} - {{item.endereco.city}} </p>
-        <p>CPF: {{ item.cpf }}</p>
-        <p>Nome do Administrador: {{ item.nome_do_administrador }}</p>
-        <p>Nome da Congregação: {{ item.nome_da_congregacao }}</p>
-        {% if item.imagem %}
-          <p><img src="{{ item.imagem }}" alt="Imagem do Membro"></p>
-        {% endif %}
-      </div>
-    {% endfor %}
   </div>
 </div>
