@@ -57,13 +57,18 @@ class AdtcModuleService {
         'cpf' => $submission_data['cpf'] ?? '',
         'nome_do_administrador' => $submission_data['nome_do_administrador'] ?? '',
         'nome_da_congregacao' => $submission_data['nome_da_congregacao'] ?? '',
-        'imagem' => $this->getFileUrl($submission_data['imagem'] ?? NULL),
+        //'imagem' => $this->getFileUrl($submission_data['imagem'] ?? NULL),
+        'imagem_membro' => $this->getFileUrl($submission_data['imagem_membro'] ?? NULL), // Adiciona o campo imagem_membro
       ];
     }
 
     return $data;
   }
 
+  /**
+   * Retorna a URL do arquivo se disponível.
+   */
+  
   // Método para gerar a URL da imagem
   protected function getFileUrl($file_id) {
     if ($file_id) {
