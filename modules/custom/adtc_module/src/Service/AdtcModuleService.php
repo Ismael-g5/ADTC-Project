@@ -36,20 +36,23 @@ class AdtcModuleService {
   }
 
   public function getWebformSubmissions() {
-    $webform_id = 'membros_cadastro'; // Identificador da Webform
-
+    $webform_id = 'membros_cadastro';
+  
     // Carrega todas as submissões do webform
     $submissions = \Drupal::entityTypeManager()
       ->getStorage('webform_submission')
       ->loadByProperties(['webform_id' => $webform_id]);
-
+  
     $data = [];
-
-    // Percorre cada submissão e extrai os dados
+  
     foreach ($submissions as $submission) {
       /** @var \Drupal\webform\Entity\WebformSubmission $submission */
       $submission_data = $submission->getData();
-
+      
+      $file_id = $submission_data['imagem_membro'] ?? NULL;
+      \Drupal::logger('adtc_module')->notice('Submission Data: @data', ['@data' => print_r($submission_data, TRUE)]);
+      $image_url = $this->getFileUrl($file_id);
+  
       $data[] = [
         'nome_do_membro' => $submission_data['nome_do_membro'] ?? '',
         'email' => $submission_data['email'] ?? '',
@@ -57,24 +60,28 @@ class AdtcModuleService {
         'cpf' => $submission_data['cpf'] ?? '',
         'nome_do_administrador' => $submission_data['nome_do_administrador'] ?? '',
         'nome_da_congregacao' => $submission_data['nome_da_congregacao'] ?? '',
-        //'imagem' => $this->getFileUrl($submission_data['imagem'] ?? NULL),
-        'imagem_membro' => $this->getFileUrl($submission_data['imagem_membro'] ?? NULL), // Adiciona o campo imagem_membro
+        'imagem_membro' => $image_url,
       ];
     }
-
+  
     return $data;
   }
+  
 
   /**
    * Retorna a URL do arquivo se disponível.
    */
   
-  // Método para gerar a URL da imagem
-  protected function getFileUrl($file_id) {
+   protected function getFileUrl($file_id) {
     if ($file_id) {
       $file = File::load($file_id);
       if ($file) {
-        return \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+        $url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+        \Drupal::logger('adtc_module')->notice('File ID: @file_id, URL: @url', [
+          '@file_id' => $file_id,
+          '@url' => $url,
+        ]);
+        return $url;
       }
     }
     return NULL;

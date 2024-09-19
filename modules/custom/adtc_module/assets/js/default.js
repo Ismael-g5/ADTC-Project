@@ -55,37 +55,37 @@ $('.btn-where-find').on('click', function (event) {
     url: 'http://localhost/Site-ADTC/api/v1/membros/all',
     method: 'GET',
     success: function (response) {
-      // Filtra os dados com base no address, city e congregation
       var filteredData = response.filter(function (item) {
         return item.endereco.address === address && item.endereco.city === city && item.nome_da_congregacao === congregation;
       });
 
-      // Oculta o conteúdo inicial
+      console.log(filteredData);
       $('#initial-content').css('display', 'none');
 
-      // Gera o HTML dinamicamente
       var htmlContent = '<div id="filter-content" class="row">';
       
       filteredData.forEach(function (item) {
+        var imageUrl = item.imagem_membro
+
         htmlContent += `
           <div class="col-md-4">
-            <h4 class="name-member"><b>${item.nome_do_membro}</b></h4>
-            <p>Email: ${item.email}</p>
+            <div class="title-img d-flex gap-2">
+            <img class="img-fluid rounded-circle" width="50" height="50" src="${imageUrl}" alt="Imagem do Membro">
+            <h4 class="name-member mt-3"><b>${item.nome_do_membro}</b></h4>
+            </div>
+            <p class="mt-3">Email: ${item.email}</p>
             <p>Endereço: ${item.endereco.address} - ${item.endereco.city}</p>
             <p>CPF: ${item.cpf}</p>
             <p>Nome do Administrador: ${item.nome_do_administrador}</p>
             <p>Nome da Congregação: ${item.nome_da_congregacao}</p>`;
         
-        if (item.imagem) {
-          htmlContent += `<p><img src="${item.imagem}" alt="Imagem do Membro"></p>`;
-        }
+       
 
         htmlContent += `</div>`;
       });
 
       htmlContent += '</div>';
 
-      // Insere o conteúdo gerado no DOM
       $('#filter-content').html(htmlContent);
     },
     error: function (xhr, status, error) {
@@ -94,15 +94,11 @@ $('.btn-where-find').on('click', function (event) {
   });
 });
 
-// Evento de clique para o botão de limpar filtro
 $('.btn-clear-filter').on('click', function () {
-  // Exibe o conteúdo inicial
   $('#initial-content').css('display', 'block');
 
-  // Limpa o conteúdo filtrado
   $('#filter-content').empty();
 
-  // Reseta o select e outros valores
   $('#addressSelect').val('');
   $('#congregation').val('');
 });
