@@ -1,11 +1,13 @@
 <div class="webform-submissions">
-	<h1 class="title-form text-center">Submissões do Webform Membros Cadastro</h1>
+	<h1 class="title-form text-center mb-5">
+		Membros</h1>
 
 	<div class="d-flex justify-content-center form-where-find">
 		<div class="container">
+			
 			<form>
 				<div class="row g-3 mb-3">
-					<div class="col-md-5">
+					<div class="col-md-4">
 						<select class="form-select address-where-find required" id="addressSelect">
 							<option selected class="state-hidden">Bairro/Localidade</option>
 
@@ -26,26 +28,27 @@
 						</select>
 					</div>
 
-					<div class="col-md-5 congregation">
+					<div class="col-md-8 congregation d-flex gap-3">
 						<select class="form-select congregation-find required" id="congregation">
 							<option selected class="cong-hidden">Congregação</option>
 						</select>
-					</div>
+					<button id="search-button" class="btn btn-primary btn-sm text-center btn-where-find text-white w-50">BUSCAR</button>
+					<button id="clear-filter-btn" class="btn btn-danger btn-sm text-center w-50">Limpar Filtro</button>
+					<button id="dowload-pdf"  class="btn btn-info btn-sm text-center text-white w-50">Baixar Dados</button>
 
-					<div class="col-md-4 d-flex justify-content-between gap-2">
-						<button id="search-button" class="btn btn-primary btn-lg text-center btn-where-find text-white w-100">BUSCAR</button>
-						<button id="clear-filter-btn" class="btn btn-danger btn-lg w-100">Limpar Filtro</button>
 					</div>
+	
 				</div>
 			</form>
 
-			<div id="initial-content" class="row">
+			<div id="initial-content" class="row content-row mt-5 px-0 py-3">
 				{% for item in content %}
-					<div class="col-md-4">
+					<div class="col-md-4 content-column mt-5">
 						<div class="title-img d-flex gap-2">
 
 							{% if item.imagem_membro %}
-								<p><img class="img-fluid rounded-circle" width="50" height="50" src="{{ item.imagem_membro }}" alt="Imagem do Membro"></p>
+								<p><img class="img-fluid rounded-circle" width="50" height="50" src="{{ item.imagem_membro }}" alt="Imagem do Membro">
+								</p>
 							{% endif %}
 							<h4 class="name-member mt-3">
 								<b>{{ item.nome_do_membro }}</b>
