@@ -13,3 +13,11 @@ adtc_form.list_ajax:
     _title: 'Membros - Dados'
   requirements:
     _permission: 'access content'  
+
+adtc_module.download_pdf:
+  path: '/sobre-nos/membros/download-pdf'
+  defaults:
+    _controller: '\Drupal\adtc_module\Controller\AdtcModuleController::generatePdf'
+    _title: 'Download Membros PDF'
+  requirements:
+    _permission: 'access content'

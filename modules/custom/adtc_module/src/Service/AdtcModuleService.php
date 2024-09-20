@@ -34,38 +34,57 @@ class AdtcModuleService {
 
     return $results;
   }
-
-  public function getWebformSubmissions() {
-    $webform_id = 'membros_cadastro';
-  
-    // Carrega todas as submissões do webform
-    $submissions = \Drupal::entityTypeManager()
-      ->getStorage('webform_submission')
-      ->loadByProperties(['webform_id' => $webform_id]);
-  
-    $data = [];
-  
-    foreach ($submissions as $submission) {
-      /** @var \Drupal\webform\Entity\WebformSubmission $submission */
-      $submission_data = $submission->getData();
-      
-      $file_id = $submission_data['imagem_membro'] ?? NULL;
-      \Drupal::logger('adtc_module')->notice('Submission Data: @data', ['@data' => print_r($submission_data, TRUE)]);
-      $image_url = $this->getFileUrl($file_id);
-  
-      $data[] = [
-        'nome_do_membro' => $submission_data['nome_do_membro'] ?? '',
-        'email' => $submission_data['email'] ?? '',
-        'endereco' => $submission_data['endereco_m'] ?? '',
-        'cpf' => $submission_data['cpf'] ?? '',
-        'nome_do_administrador' => $submission_data['nome_do_administrador'] ?? '',
-        'nome_da_congregacao' => $submission_data['nome_da_congregacao'] ?? '',
-        'imagem_membro' => $image_url,
-      ];
+  public function convertImageToBase64($file_id) {
+    if (!$file_id) {
+        return null;
     }
-  
-    return $data;
+
+    $file = \Drupal\file\Entity\File::load($file_id);
+    if ($file) {
+        $file_path = $file->getFileUri();
+        $real_path = \Drupal::service('file_system')->realpath($file_path);
+
+        $image_data = file_get_contents($real_path);
+        $base64 = 'data:' . mime_content_type($real_path) . ';base64,' . base64_encode($image_data);
+        return $base64;
+    }
+
+    return null;
+}
+
+
+public function getWebformSubmissions() {
+  $webform_id = 'membros_cadastro';
+
+  // Carrega todas as submissões do webform
+  $submissions = \Drupal::entityTypeManager()
+    ->getStorage('webform_submission')
+    ->loadByProperties(['webform_id' => $webform_id]);
+
+  $data = [];
+
+  foreach ($submissions as $submission) {
+    /** @var \Drupal\webform\Entity\WebformSubmission $submission */
+    $submission_data = $submission->getData();
+    
+    $file_id = $submission_data['imagem_membro'] ?? NULL;
+    \Drupal::logger('adtc_module')->notice('Submission Data: @data', ['@data' => print_r($submission_data, TRUE)]);
+    $image_base64 = $this->convertImageToBase64($file_id); 
+
+    $data[] = [
+      'nome_do_membro' => $submission_data['nome_do_membro'] ?? '',
+      'email' => $submission_data['email'] ?? '',
+      'endereco' => $submission_data['endereco_m'] ?? '',
+      'cpf' => $submission_data['cpf'] ?? '',
+      'nome_do_administrador' => $submission_data['nome_do_administrador'] ?? '',
+      'nome_da_congregacao' => $submission_data['nome_da_congregacao'] ?? '',
+      'imagem_membro' => $image_base64,  
+    ];
   }
+
+  return $data;
+}
+
   
 
   /**

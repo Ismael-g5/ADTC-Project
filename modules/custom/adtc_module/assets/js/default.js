@@ -103,6 +103,10 @@ $('.btn-clear-filter').on('click', function () {
   $('#congregation').val('');
 });
 
+$('#download-pdf').on('click', function(e) {
+  e.preventDefault();
+  window.location.href = 'http://localhost/Site-ADTC//sobre-nos/membros/download-pdf';
+});
   
 
 })(jQuery);
