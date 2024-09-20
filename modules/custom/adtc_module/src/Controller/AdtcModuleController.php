@@ -50,11 +50,12 @@ class AdtcModuleController extends ControllerBase {
     $html = '<h1>Lista de Membros</h1>';
     foreach ($submissions as $submission) {
       if ($submission['imagem_membro']) {
-        $html .= '<img src="' . $submission['imagem_membro'] . '" width="150" height="150">';
+        $html .= '<img src="' . $submission['imagem_membro'] . '" width="80" height="80">';
       }
       $html .= '<p><strong>Nome:</strong> ' . $submission['nome_do_membro'] . '</p>';
       $html .= '<p><strong>Email:</strong> ' . $submission['email'] . '</p>';
       $html .= '<p><strong>CPF:</strong> ' . $submission['cpf'] . '</p>';
+      $html .= '<p><strong>Nome do Administrador:</strong> ' . $submission['nome_do_administrador'] . '</p>';
       $html .= '<p><strong>Nome da Congregação:</strong> ' . $submission['nome_da_congregacao'] . '</p>';
       $html .= '<hr>';
     }
