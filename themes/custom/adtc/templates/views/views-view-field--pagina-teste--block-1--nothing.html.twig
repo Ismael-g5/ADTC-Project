@@ -1,0 +1,18 @@
+{% set titleNew = row._entity.field_conteudo_titulo.value %}
+{% set image = row._entity.field_imagem_teste.entity.fileuri %}
+{% set urlImage = file_url(image) %}
+{% set termos = row._entity.field_categorias.entity.name.value %}
+
+
+
+<div class="row">
+<div class="col-md-4">
+{{titleNew}}
+<div class="termos text-center" style="color: red;">#{{termos}}</div>
+</div>
+<div class="col-md-4" data-termo="{{termos}}">
+<img src="{{urlImage}}">
+</div>
+
+</div>
+
