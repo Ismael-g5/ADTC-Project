@@ -105,7 +105,7 @@ $('.btn-clear-filter').on('click', function () {
 
 $('#download-pdf').on('click', function(e) {
   e.preventDefault();
-  window.location.href = 'http://localhost/Site-ADTC//sobre-nos/membros/download-pdf';
+  window.location.href = 'http://localhost/Site-ADTC/membros/download-pdf';
 });
   
 

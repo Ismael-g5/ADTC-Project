@@ -1,10 +1,12 @@
 adtc_form.content:
-  path: '/sobre-nos/membros/dados'
+  path: '/membros/dados'
   defaults:
     _controller: '\Drupal\adtc_module\Controller\AdtcModuleController::index'
     _title: 'Membros - Dados'
   requirements:
     _permission: 'access content'
+    _role: 'authenticated'
+
 
 adtc_form.list_ajax:
   path: '/api/v1/membros/all'
@@ -13,9 +15,10 @@ adtc_form.list_ajax:
     _title: 'Membros - Dados'
   requirements:
     _permission: 'access content'  
+    
 
 adtc_module.download_pdf:
-  path: '/sobre-nos/membros/download-pdf'
+  path: '/membros/download-pdf'
   defaults:
     _controller: '\Drupal\adtc_module\Controller\AdtcModuleController::generatePdf'
     _title: 'Download Membros PDF'
