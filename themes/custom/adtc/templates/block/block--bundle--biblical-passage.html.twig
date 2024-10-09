@@ -3,38 +3,46 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
   ] %}
-<div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {% if label %}
-    <h2{{ title_attributes }}>
-      {{ label }}
-    </h2>
-  {% endif %}
-  {{ title_suffix }}
-  {% block content %}
-    <div{{ content_attributes.addClass('content') }}>
-      {% set passage = content.field_passage.0['#text'] %}
-      {% set capVers = content.	field_book_chapter.0['#text'] %}
+<div{{attributes.addClass(classes)}}>
+	{{ title_prefix }}
+	{% if label %}
+		<h2{{title_attributes}}>
+			{{ label }}
+		</h2>
+	{% endif %}
+	{{ title_suffix }}
+	{% block content %}
+		<div{{content_attributes.addClass('content')}}>
+			{% set book = content.field_book_chapter.0['#text'] %}
+			{% set cap = content.field_cap.0['#context'].value %}
+			{% set vers = content.field_vers.0['#context'].value %}
 
-      {% set image = content.field_parallax_bg.0['#file'].get('uri').value %}
-      {% set file_url = file_url(image) %}
 
-<div class="parallax-window liquid-row-overlay mt-5 pt-3" data-parallax="scroll" data-image-src="{{ file_url }}" style="height:80vh; background:rgba(0, 0, 0, 0.65);">
-<div class="container passage-message d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
-  <div class=" d-none title-passe text-center mb-5" style="font-size: 24px;line-height: 53px; color: #ffffff;">
-    PASSAGEM BÍBLICA DIÁRIA
-  </div>
-  <div class="content-passage text-center" style="font-size: 24px;line-height: 43px; color: #ffffff;">
-    <em>"{{ passage|raw|striptags }}"</em>
-    <div class="biblia-passage"></div>
-  </div>
-  <div class="cap-vers text-center mt-5"  style="font-size: 24px;line-height: 43px; color: #ffffff;">
-    {{ capVers }}
-  </div>
-<div class="biblia-passage"></div>
-</div>
-</div>
+			{% set image = content.field_parallax_bg.0['#file'].get('uri').value %}
+			{% set file_url = file_url(image) %}
 
-    </div>
-  </div>
+			<div class="parallax-window liquid-row-overlay mt-5 pt-3" data-parallax="scroll" data-image-src="{{ file_url }}" style="height:80vh; background:rgba(0, 0, 0, 0.65);">
+				<div class="container passage-message d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+					<div class=" d-none title-passe text-center mb-5" style="font-size: 24px;line-height: 53px; color: #ffffff;">
+						PASSAGEM BÍBLICA DIÁRIA
+					</div>
+					<div class="content-passage text-center" style="font-size: 24px;line-height: 43px; color: #ffffff;">
+
+						<div data-book="{{book}}" data-cap="{{cap}}" data-verse="{{vers}}" class="biblia-passage"></div>
+					</div>
+					<div class="cap-vers-book d-flex text-center mt-5" style="font-size: 24px;line-height: 43px; color: #ffffff;">
+						<div class="book-name"></div>
+						<div class="cap-name" style="margin-left: 10px;">{{cap}}</div>
+						<div class="vers-name">
+							{% if vers is not empty %}
+								-{{vers}}
+							{% endif %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
 {% endblock %}</div>

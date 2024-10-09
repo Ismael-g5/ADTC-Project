@@ -3,7 +3,6 @@
 
   Drupal.behaviors.default = {
     attach: function (context, settings) {
-      // Inicializa o carousel Slick
       $(".slick-carousel").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -15,7 +14,6 @@
         cssEase: 'linear'
       });
 
-      // Controles manuais do Slick
       $(".slick-prev").on("click", function () {
         $(".slick-carousel").slick("slickPrev");
       });
@@ -24,28 +22,71 @@
         $(".slick-carousel").slick("slickNext");
       });
 
-      // Requisição AJAX para API da Bíblia
+      // Captura os atributos data do elemento biblia-passage
+      var book = $(".biblia-passage").attr("data-book");
+      var cap = $(".biblia-passage").attr("data-cap");
+      var verseString = $(".biblia-passage").attr("data-verse");
+
+      // Inicializa o intervalo de versículos
+      var verseRange = null;
+
+      // Verifica se verseString está definido e não está vazio
+      if (verseString) {
+        // Divide o intervalo de versículos, caso exista
+        verseRange = verseString.split('-').map(Number);
+      }
+
+      // Requisição AJAX para a API
       $.ajax({
-        url: "https://api.scripture.api.bible/v1/bibles/d63894c8d9a7a503-01/passages?reference=Joao.3.16",
+        url: "https://www.abibliadigital.com.br/api/verses/nvi/" + book + "/" + cap,
         method: "GET",
-        headers: {
-          "api-key": "46e0b63f37aa2b2c7ffd02b417e31019",
-          "Accept": "application/json"
-        },
         success: function (response) {
-          if (response.data && response.data.length > 0) {
-            var reference = response.data[0].reference;
-            var content = response.data[0].content;
+          // Adiciona log para verificar a estrutura do response
+          //console.log("Response da API:", response);
 
-            // Remover tags HTML da passagem
-            var cleanContent = content.replace(/<\/?[^>]+(>|$)/g, "");
+          var bookName = response.book.name;
+  
 
-            // Exibir a passagem bíblica no HTML
-            $(".biblia-passage").html("<strong>" + reference + "</strong>: " + cleanContent);
+          // Verifica se a resposta possui os versículos
+          if (response.verses && response.verses.length > 0) {
+            var content = '';
+
+            // Filtra os versículos com base no intervalo definido
+            response.verses.forEach(function (passage) {
+              var number = passage.number;
+              var text = passage.text;
+
+              // Adiciona apenas os versículos do intervalo desejado
+              if (!verseRange || (verseRange.length === 1 && number === verseRange[0]) || 
+                  (verseRange.length === 2 && number >= verseRange[0] && number <= verseRange[1])) {
+                var cleanContent = text.replace(/<\/?[^>]+(>|$)/g, "") // Remove tags HTML
+                                        .replace(/\s*\d+\s*/g, "");    // Remove números de versículos
+
+                content += "<em>" + cleanContent + "</em><br>"; // Adiciona cada passagem com duas quebras de linha
+              } else {
+                console.log("Versículo ignorado:", number); // Log para versículos ignorados
+              }
+            });
+
+            // Verifica se o conteúdo excede 500 caracteres
+            if (content.length > 500) {
+              content = content.substring(0, 500) + "..."; // Trunca o conteúdo e adiciona "..."
+            }
+
+            $(".book-name").html(bookName);
+            // Insere o conteúdo na div biblia-passage
+            if (content) {
+              $(".biblia-passage").html(content);
+            } else {
+              $(".biblia-passage").html("<p>Nenhum versículo encontrado no intervalo especificado.</p>");
+            }
+          } else {
+            $(".biblia-passage").html("<p>Nenhum versículo encontrado.</p>");
           }
         },
         error: function (error) {
           console.log("Erro na requisição:", error);
+          $(".biblia-passage").html("<p>Erro ao carregar versículos.</p>");
         }
       });
     }
