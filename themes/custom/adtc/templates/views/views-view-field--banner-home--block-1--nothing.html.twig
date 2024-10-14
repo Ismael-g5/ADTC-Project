@@ -1,3 +1,4 @@
+
 {{ attach_library('adtc/slick') }}
 
 {# main -> Itens do menu #}
@@ -45,9 +46,42 @@
         {% set file_path = file_url(estilo_banner) %}
         <div class="banner-item" style="position: relative;">
           <img class="img-fluid banner-home" src="{{ file_path }}" alt="Banner">
-          <!-- Removido o bloco .banner-caption e seu conteúdo -->
+          
+          <!-- Overlay para o banner -->
+          <div class="banner-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center;">
+            <!-- Conteúdo do overlay -->
+            <div class="overlay-content" style="color: white; text-align: center;">
+              <h1>Assembléia de Deus - Templo Central - Croatá</h1>
+                <br />
+                <br />
+              <h3 id="rotating-text">72 anos espalhando a palavra de Deus</h3>
+                <br />
+                <br />
+              <button type="button" class="btn btn-light">Saiba Mais</button>
+            </div>
+          </div>
         </div>
       {% endfor %}
     </div>
   {% endif %}
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const texts = [
+      'espalhando a palavra de Deus',
+      'Perseverando na Fé',
+      'Trazendo as Boas Novas'
+    ];
+
+    let currentTextIndex = 0;
+
+    function changeText() {
+      const rotatingTextElement = document.getElementById('rotating-text');
+      rotatingTextElement.textContent = '72 anos ' + texts[currentTextIndex];
+      currentTextIndex = (currentTextIndex + 1) % texts.length;
+    }
+
+    setInterval(changeText, 2000);
+  });
+</script>

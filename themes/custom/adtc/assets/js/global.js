@@ -6,7 +6,7 @@
       $(".slick-carousel").slick({
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 850,
         arrows: false,
         dots: true,
@@ -64,7 +64,7 @@
 
                 content += "<em>" + cleanContent + "</em><br>"; // Adiciona cada passagem com duas quebras de linha
               } else {
-                console.log("Versículo ignorado:", number); // Log para versículos ignorados
+                //console.log("Versículo ignorado:", number); // Log para versículos ignorados
               }
             });
 
