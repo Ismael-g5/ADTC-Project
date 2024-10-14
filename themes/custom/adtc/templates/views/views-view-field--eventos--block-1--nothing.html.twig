@@ -1,52 +1,37 @@
+<style>
+.card {
+    border: none; /* Remove as bordas/listras */
+    box-shadow: none; /* Remove sombras, se houver */
+    background-color: white; /* Define a cor de fundo padrão do card */
+}
 
-{% set events = row._entity.field_eventos_f %}
-{% for item in events %}
-  {% set paragraph_item = item.entity %}
-  {% set title = paragraph_item.field_t_evento.value %}
-  {% set image = paragraph_item.field_imagem_evento.entity.uri.value %}
-  {% set urlImage = file_url(image) %}
-  {% set data = paragraph_item.field_dt_evento.value %}
-  {{dump(data)}}
-  {% set desc = paragraph_item.field_descricao_evento.value %}
+.block-events .col-md-4:nth-child(2) .card {
+    background-color: #ebebeb; /* Define a cor de fundo do segundo card */
+}
 
-{% endfor %}
-
+</style>
 <div class="container events mt-5 py-3">
-	<div class="row block-events">
-		<div class="col-md-4 text-center">
-			<div class="card" style="width: 18rem;">
-				<img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
-				<div class="card-body">
-					<h5 class="card-title">Título do card</h5>
-					<p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-					<a href="#" class="btn btn-primary">Visitar</a>
-				</div>
-			</div>
-		</div>
+    <div class="row block-events">
+        {% set events = row._entity.field_eventos_f %}
+        {% for item in events %}
+            {% set paragraph_item = item.entity %}
+            {% set title = paragraph_item.field_t_evento.value %}
+            {% set image = paragraph_item.field_imagem_evento.entity.uri.value %}
+            {% set urlImage = file_url(image) %}
+            {% set data = paragraph_item.field_dt_evento.value %}
+						{% set desc = paragraph_item.field_desc_evento.value %}
 
-
-
-
-
-		<div class="col-md-4 text-center">
-			<div class="card" style="width: 18rem;">
-				<img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
-				<div class="card-body">
-					<h5 class="card-title">Título do card</h5>
-					<p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-					<a href="#" class="btn btn-primary">Visitar</a>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4 text-center">
-			<div class="card" style="width: 18rem;">
-				<img class="card-img-top" src=".../100px180/" alt="Imagem de capa do card">
-				<div class="card-body">
-					<h5 class="card-title">Título do card</h5>
-					<p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-					<a href="#" class="btn btn-primary">Visitar</a>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="col-md-4 text-center mb-4">
+                <div class="card" style="width: auto;">
+                    <img class="card-img-top d-none" src="{{ urlImage }}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ title }}</h5>
+                        <p class="card-text">{{ desc|raw }}</p>
+                        <p class="card-text"><small>Data/Horário: {{ data }}</small></p>
+                        <a href="#" class="btn btn-primary">Visitar</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
