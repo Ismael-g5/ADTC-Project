@@ -272,6 +272,22 @@ h4 {
   perspective: 1000px; /* Adiciona perspectiva para o efeito 3D */
 }
 
+.card {
+  border: none; /* Remove as bordas/listras */
+  box-shadow: none; /* Remove sombras, se houver */
+  background-color: white; /* Define a cor de fundo padrão do card */
+}
+
+.block-events .col-md-4:nth-child(2) .card {
+  background-color: #ebebeb; /* Define a cor de fundo do segundo card */
+  height: 16em;
+}
+
+.bg-gray{
+  background-color: #ebebeb; /* Define a cor de fundo do segundo card */
+}
+
+
 .text-flip-item {
   display: block;
   font-size: 24px; /* Tamanho do texto */
@@ -295,4 +311,8 @@ h4 {
 .text-flip-item:not(.active) {
   /* Adiciona uma classe para garantir que itens não ativos são ocultados corretamente */
   opacity: 0;
+}
+
+.block-live{
+  margin-top: -4%;
 }
