@@ -5,6 +5,8 @@ global-styling:
   css:
     component:
      assets/css/style.css: {}
+     assets/css/section-banner.css: {}
+
 bootstrap:
   js:
     /libraries/popper/popper.min.js: {}

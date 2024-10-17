@@ -1,0 +1,128 @@
+ /* Ajustes no estilo */
+ .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo após o scroll */
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 0 10px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  margin-left: 20px;
+}
+
+.hero {
+  height: 100vh;
+  background: url('http://localhost/Site-ADTC/themes/custom/adtc/assets/images/banner-home.webp') no-repeat center center/cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.1s ease-out;
+  margin-top: -5%;
+}
+
+.hero-title {
+  font-family: "Crimson Text";
+  font-style: italic;
+  color: #fff;
+  font-weight: 400;
+  font-size: 25px;
+}
+
+.btn-learn-more:hover{
+  color: #000 !important;
+}
+
+.hero-subtitle {
+  z-index: 6;
+  font-family: Montserrat;
+  color: #fff;
+  text-align: left;
+  font-weight: 700;
+  font-size: 100px;
+}
+
+.hero-second-subtitle{
+    z-index: 7;
+    font-family: Montserrat;
+    height: auto;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 15px;
+    letter-spacing: 0px;
+    font-weight: 700;
+    font-size: 34px;
+   
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+}
+
+.btn-hero {
+  color: #fff;
+  text-decoration: none;
+  background-color: #000;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.nav-list li a {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.section-navbar {
+  position: relative;
+  z-index: 12;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo inicial */
+}
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+}
