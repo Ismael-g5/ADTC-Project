@@ -1,0 +1,41 @@
+
+
+<div class="container year-ev">
+  <div class="row section-year-ev px-5 py-5">
+    <div class="title-section-year text-center mt-5">78 Anos de Evangelho</div>
+    <div class="subtitle-section-year text-center py-2">66 anos de Templo</div>
+    <div class="image-icon text-center py-3 mt-3">
+      <img src="/Site-ADTC/themes/custom/adtc/assets/images/icon.png">
+    </div>
+    {% set content = row._entity.field_conteudo_listagem %}
+    {% for item in content %}
+      {% set paragraph_item = item.entity %}
+      {% set values = paragraph_item.field_conteudo_year.value %}
+      <div class="col-md-6 columns-content-ev mt-4">
+        {{ values|raw }}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona o container principal da seção que queremos animar
+    const sectionYearEv = document.querySelector('.section-year-ev');
+    
+    // Cria o Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Adiciona a classe 'animate' quando o container entra na tela
+          entry.target.classList.add('animate');
+          observer.unobserve(entry.target); // Para de observar após a animação
+        }
+      });
+    }, { threshold: 0.1 }); // Threshold define quanto da seção deve estar visível
+    
+    // Observa o container principal
+    observer.observe(sectionYearEv);
+  });
+</script>
+

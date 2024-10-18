@@ -350,6 +350,39 @@ h4 {
     font-style: italic;
     color: #f5f5f5;
 }
+.columns-content-ev{
+  font-family: 'Crimson Text', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: normal;
+  font-style: italic;
+  text-transform: none;
+  text-decoration: none;
+  color: #8b8b8b;
+}
+
+.title-section-year{
+  font-family: 'Montserrat', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: bold;
+  font-style: normal;
+  text-transform: none;
+  text-decoration: none;
+}
+
+.section-ev{
+  background-color: #f9f9f9;
+}
+
+
+.subtitle-section-year {
+  font-family: "Crimson Text";
+  font-style: italic;
+  color: #8b8b8b;
+  font-weight: 400;
+  font-size: 20px;
+}
 
 
 .message-1{
@@ -365,3 +398,33 @@ h4 {
 .message-4{
   background-color: #8c8c8c;
 }
+
+    /* Estilos gerais da seção 78 anos */
+    .year-ev {
+      background-color: #f9f9f9;
+      padding: 50px 0;
+    }
+
+    
+    .title-section-year {
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    .subtitle-section-year {
+      font-size: 1.5em;
+    }
+
+  
+    /* Inicialmente, a seção inteira está invisível e deslocada para cima */
+    .section-year-ev {
+      opacity: 0;
+      transform: translateY(-100px); /* Desloca a seção para cima */
+      transition: opacity 2s ease-out, transform 2s ease-out; /* Animação lenta */
+    }
+
+    /* Quando a classe 'animate' é adicionada, a animação de descida é ativada */
+    .section-year-ev.animate {
+      opacity: 1;
+      transform: translateY(0); /* A seção desce para sua posição original */
+    }
