@@ -1,47 +1,61 @@
 {% set video = row._entity.field_link_youtube_message.value.0.uri %}
-{% set image = row._entity.field_imagem_message.entity.fileuri %} 
+{% set image = row._entity.field_imagem_message.entity.fileuri %}
 {% set imageUrl = file_url(image) %}
 {% set titleMessage = row._entity.field_title_message.value %}
 {% set videoId = video.split('v=')[1] %}
 {% set thumbnail = 'https://via.placeholder.com/560x315.png?text=Video+Thumbnail' %}
 
+
+<div class="row cards-messages d-none">
+	{% set homeContent = row._entity.field_mensagem_e_home %}
+	{% for item in homeContent %}
+		{% set paragraph_item = item.entity %}
+		{% set title = paragraph_item.field_title_p.value %}
+		{% set desc = paragraph_item.field_desc_b.value %}
+		<div class="col-md-3 message-{{loop.index}} py-5">
+			<h5 class="title-message-week-home text-center text-white">{{title|raw}}</h5>
+			<p class="desc-message-week-home text-center text-white">{{desc|raw}}</p>
+			<div class="btn-learn-more-message text-center"><a href="#">Ler Mais</a></div>
+		</div>
+	{% endfor %}
+</div>
 <div class="container mt-5">
-  <div class="row block-message-week">
-    <div class="col-md-6 d-flex flex-column justify-content-center">
-      <h2 class="title-block-message mb-3">
-        <b>Mensagem da Semana</b>
-      </h2>
-      <h4 class="message-theme mb-3">
-        {{ titleMessage|upper }}
-      </h4>
-      <div class="buttons-see-more d-flex" style="gap: 10px;">
-        <button type="button" class="btn btn-dark">
-          MAIS DESTA SÉRIE >
-        </button>
-        <button type="button" class="btn btn-dark">
-          ARQUIVO DE PREGAÇÕES >
-        </button>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div id="video-container" class="video-container">
-        <img src="{{ imageUrl }}" alt="Video thumbnail" class="video-thumbnail">
-        <div class="overlay"></div>
-        <a href="javascript:void(0);" onclick="abreVideo('{{ video }}')" class="play-button">
-          <img src="{{ path('<front>') }}{{ directory }}/assets/images/play.png" alt="Play icon" class="play-icon">
-        </a>
-      </div>
-      <hr class="my-2">
-      <span class="message-theme-line text-center d-block">
-        {{ titleMessage|upper }}
-      </span>
-    </div>
-  </div>
+	<div class="row block-message-week">
+		<div class="col-md-6 d-flex flex-column justify-content-center">
+			<h2 class="title-block-message mb-3">
+				<b>Mensagem da Semana</b>
+			</h2>
+			<h4 class="message-theme mb-3">
+				{{ titleMessage|upper }}
+			</h4>
+			<div class="buttons-see-more d-flex" style="gap: 10px;">
+				<button type="button" class="btn btn-dark">
+					MAIS DESTA SÉRIE >
+				</button>
+				<button type="button" class="btn btn-dark">
+					ARQUIVO DE PREGAÇÕES >
+				</button>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div id="video-container" class="video-container">
+				<img src="{{ imageUrl }}" alt="Video thumbnail" class="video-thumbnail">
+				<div class="overlay"></div>
+				<a href="javascript:void(0);" onclick="abreVideo('{{ video }}')" class="play-button">
+					<img src="{{ path('<front>') }}{{ directory }}/assets/images/play.png" alt="Play icon" class="play-icon">
+				</a>
+			</div>
+			<hr class="my-2">
+			<span class="message-theme-line text-center d-block">
+				{{ titleMessage|upper }}
+			</span>
+		</div>
+	</div>
 </div>
 
 <script>
-  function abreVideo(videoUrl) {
-    var videoContainer = document.getElementById('video-container');
-    videoContainer.innerHTML = '<iframe width="100%" height="100%" src="' + videoUrl + '?rel=0&amp;showinfo=0&amp;autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>';
-  }
+	function abreVideo(videoUrl) {
+var videoContainer = document.getElementById('video-container');
+videoContainer.innerHTML = '<iframe width="100%" height="100%" src="' + videoUrl + '?rel=0&amp;showinfo=0&amp;autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>';
+}
 </script>
