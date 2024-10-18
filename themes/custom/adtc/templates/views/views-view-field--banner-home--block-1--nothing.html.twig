@@ -1,35 +1,49 @@
+{# main -> Itens do menu #}
+{% set menu_main = 'main' %}
+{% set menu_tree_main = drupal_menu(menu_main) %}
+{% set menu_items = menu_tree_main['#items'] %}
+
 <div class="row section-navbar">
-  <nav class="navbar">
-    <div class="container">
-      <a href="/" class="logo">Igreja AD Croatá</a>
-      <ul class="nav-list">
-        <li><a href="/">Home</a></li>
-        <li><a href="/sobre">Sobre</a></li>
-        <li><a href="/eventos">Eventos</a></li>
-        <li><a href="/contato">Contato</a></li>
-      </ul>
-    </div>
-  </nav>
+	<nav class="navbar">
+		<div class="container">
+			<a href="/" class="logo">Igreja AD Croatá</a>
+			<ul class="nav-list px-3">
+				{% for item in menu_items %}
+					<li class="item list-unstyled">
+						<a href="{{ item.url }}" class="link-menu menu-title" target="_blank">
+							{{ item.title }}
+						</a>
+					</li>
+					{% if loop.index != 4 %}
+						<li class="item list-unstyled text-white">
+							|
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	
+	</nav>
 </div>
 
 <section class="hero">
-  <div class="overlay"></div>
-  <div class="hero-content">
-    <h1 class="hero-title text-center mb-4">Nossa Fé, Nossa Missão</h1>
-    <p class="hero-subtitle mb-5 py-4">Unidos pela Graça</p>
-  <p class="hero-second-subtitle mt-5"> Ate aqui, nos ajudou o Senhor</p>
-<button type="button" class="btn btn-outline-light mt-5 text-white btn-learn-more">Saiba Mais</button>
+	<div class="overlay"></div>
+	<div class="hero-content mt-5 pt-3">
+		<h1 class="hero-title text-center mb-4">Nossa Fé, Nossa Missão</h1>
+		<p class="hero-subtitle mb-5 py-4">Unidos pela Graça</p>
+		
+		<button type="button" class="btn btn-outline-light mt-5 text-white btn-learn-more rounded-pill">Saiba Mais</button>
 
-  </div>
+	</div>
 </section>
 
 <script>
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+	window.addEventListener('scroll', function () {
+const navbar = document.querySelector('.navbar');
+if (window.scrollY > 50) {
+navbar.classList.add('scrolled');
+} else {
+navbar.classList.remove('scrolled');
+}
+});
 </script>
